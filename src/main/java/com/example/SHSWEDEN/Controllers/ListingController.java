@@ -16,7 +16,7 @@ public class ListingController {
     @Autowired
     private ListingRepository listingRepository;
 
-    @GetMapping("/listings")
+    @GetMapping("/allListings")
     public String listings(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
 
         List<Listing> listings = getPage(page-1, PAGE_SIZE);
@@ -29,16 +29,16 @@ public class ListingController {
         model.addAttribute("showPrev", page > 1);
         model.addAttribute("showNext", page < pageCount);
 
-        return "listings";
+        return "allListings";
     }
 
-    @GetMapping("/listing/{page}/{id}")
+    @GetMapping("/oneListing/{page}/{id}")
     public String listing(Model model, @PathVariable Integer page, @PathVariable Integer id) {
         Listing listing = listingRepository.findById(id).get();
         model.addAttribute("page", page);
         model.addAttribute("listing", listing);
 
-        return "listing";
+        return "oneListing";
     }
 
 
@@ -52,7 +52,7 @@ public class ListingController {
     @PostMapping("/createListing")
     String addedListing(@ModelAttribute Listing listing){
         listingRepository.save(listing);
-        return "redirect:/listings";
+        return "redirect:/allListings";
     }
 
 
