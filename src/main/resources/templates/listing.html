@@ -1,0 +1,35 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Listings</title>
+</head>
+<body>
+<h1>Listing</h1>
+<div>
+    <p><a th:href="'/listings?page=' + ${page}">Back to listings</a></p>
+</div>
+<table>
+    <tr>
+        <th>Title</th>
+        <th th:text="${listing.title}"></th>
+    </tr>
+    <tr>
+        <th>description</th>
+        <th th:text="${listing.description}"></th>
+    </tr>
+    <tr>
+        <th>Price</th>
+        <th th:text="${listing.price}"></th>
+    </tr>
+    <tr>
+        <th>shippingCost</th>
+        <th th:text="${listing.shippingCost}"></th>
+    </tr>
+    <tr>
+        <th>donationPercent</th>
+        <th th:text="${listing.donationPercent}"></th>
+    </tr>
+</table>
+<!--<div><a th:href="'/' + ${listing.id}">Edit listing</a></div>-->
+</body>
+</html>
