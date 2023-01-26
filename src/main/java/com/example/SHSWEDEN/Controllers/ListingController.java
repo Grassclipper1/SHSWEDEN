@@ -2,13 +2,17 @@ package com.example.SHSWEDEN.Controllers;
 
 
 import com.example.SHSWEDEN.Entities.Listing;
+import com.example.SHSWEDEN.Entities.User;
 import com.example.SHSWEDEN.Repos.ListingRepository;
+import com.example.SHSWEDEN.Repos.UserRepository;
+import com.example.SHSWEDEN.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -17,6 +21,8 @@ public class ListingController {
     private static final int PAGE_SIZE = 10;
     @Autowired
     private ListingRepository listingRepository;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/allListings")
     public String listings(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
@@ -45,13 +51,18 @@ public class ListingController {
 
 
     @GetMapping("/createListing")
-    String createListing(Model model) {
-        model.addAttribute("listing", new Listing());
-        return "createListing";
+    String createListing(HttpSession session, Model model) {
+        Integer id = (Integer) session.getAttribute("userId");
+        if (id != null) {
+            model.addAttribute("listing", new Listing());
+            return "createListing";
+        } else
+            session.removeAttribute("userId");
+         return "redirect:/allListings";
     }
 
 
-    @PostMapping("/createListing")
+        @PostMapping("/createListing")
     String addedListing(@Valid Listing listing, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             System.out.println("error");
