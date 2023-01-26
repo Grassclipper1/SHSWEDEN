@@ -2,6 +2,7 @@ package com.example.SHSWEDEN.Controllers;
 
 import com.example.SHSWEDEN.Entities.User;
 import com.example.SHSWEDEN.Repos.UserRepository;
+import com.example.SHSWEDEN.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,12 +10,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class UserController {
+    @Autowired
+    UserService userService;
 
     @Autowired
     private UserRepository userRepository;
@@ -29,10 +34,19 @@ public class UserController {
         return "signin";
     }
 
-//    @PostMapping("/signin")
-//    String signinuser() {
-//        return "ProfilePage";
-//    }
+    @PostMapping("/signin")
+    String login(HttpSession session, @RequestParam String emailAddress, @RequestParam String password) {
+        User user = userService.findByEmailAddressAndPassword(emailAddress, password);
+
+        if(user != null && user.getPassword().equals(password)){
+            session.setAttribute("UserName", user.getUserName());
+            session.setAttribute("emailAddress", emailAddress);
+            session.setAttribute("userId", user.getId());
+            return "ProfilePage";
+        }
+
+        return "signin";
+    }
 
     @GetMapping("/ProfilePage")
     String ProfilePage() {
