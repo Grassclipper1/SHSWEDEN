@@ -6,8 +6,10 @@ import com.example.SHSWEDEN.Repos.ListingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -50,7 +52,11 @@ public class ListingController {
 
 
     @PostMapping("/createListing")
-    String addedListing(@ModelAttribute Listing listing){
+    String addedListing(@Valid Listing listing, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            System.out.println("error");
+            return "createListing";
+        }
         listingRepository.save(listing);
         return "redirect:/allListings";
     }

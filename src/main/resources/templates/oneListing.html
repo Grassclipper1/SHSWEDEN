@@ -6,7 +6,7 @@
 <body>
 <h1>Listing</h1>
 <div>
-    <p><a th:href="'/listings?page=' + ${page}">Back to listings</a></p>
+    <p><a th:href="'/allListings?page=' + ${page}">Back to listings</a></p>
 </div>
 <table>
     <tr>
@@ -28,6 +28,9 @@
     <tr>
         <th>donationPercent</th>
         <th th:text="${listing.donationPercent}"></th>
+
+        <th>date</th>
+        <th th:text="${listing.date}"></th>
     </tr>
 </table>
 <!--<div><a th:href="'/' + ${listing.id}">Edit listing</a></div>-->

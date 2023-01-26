@@ -7,7 +7,7 @@
 <body>
 <h1>Welcome home</h1>
 <div>
-    <p th:text="${'Logged in as: ' + #httpServletRequest.remoteUser}"></p>
+    <p th:text="'Welcome ' + ${session.userId}"></p>
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Logout"/>
     </form>

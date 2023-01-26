@@ -46,11 +46,13 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public String login(@Valid @ModelAttribute User user, BindingResult bindingResult, HttpSession session, Model model) {
-        userRepository.save(user);
+    public String login(@Valid User user, BindingResult bindingResult, HttpSession session, Model model) {
         if (bindingResult.hasErrors()) {
             System.out.println("error");
         }
+        User createdUser = userRepository.save(user);
+        session.setAttribute("userId", createdUser.getId());
+
         return "account";
 
     }
