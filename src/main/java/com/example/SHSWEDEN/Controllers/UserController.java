@@ -1,5 +1,6 @@
 package com.example.SHSWEDEN.Controllers;
 
+import com.example.SHSWEDEN.Entities.Listing;
 import com.example.SHSWEDEN.Entities.User;
 import com.example.SHSWEDEN.Repos.UserRepository;
 import com.example.SHSWEDEN.Services.UserService;
@@ -73,6 +74,15 @@ public class UserController {
     @GetMapping("/logout")
     String logout(HttpSession session) {
         session.removeAttribute("userId");
+        return "redirect:/";
+    }
+    @GetMapping("/account")  //använder denna för att ha åtkomst till account för tester
+    String account(HttpSession session) {
+        Integer id = (Integer) session.getAttribute("userId");
+        if (id != null) {
+            return "account";
+        } else
+            session.removeAttribute("userId");
         return "redirect:/";
     }
 
