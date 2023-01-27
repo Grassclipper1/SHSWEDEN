@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<div><p th:text=" 'logged in as ' + ${session.userId}"></p></div>
+<div><p th:text=" 'logged in as ' + ${session.user?.getFirstName()}"></p></div>
 <form th:object="${listing}" action="/createListing" method="POST">
 
   <input type="hidden" th:field="*{id}">
