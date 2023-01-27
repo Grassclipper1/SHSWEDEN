@@ -28,7 +28,7 @@
       <div class="py-5 text-center">
 
         <h2>Vänligen fyll i dina uppgifter för att fortsätta med betalnigen</h2>
-        <p th:text=" 'Tack för att du handlar hos oss, välkommen åter: ' + ${user.getFirstName()}"></p>
+        <p th:text=" 'Tack för att du handlar hos oss, välkommen åter: ' + ${user?.getFirstName()}"></p>
 
       </div>
 
@@ -87,14 +87,14 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">Förnamn</label>
-                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                <input type="text" class="form-control" id="firstName" placeholder=""  th:value="${user?.getFirstName()}" required>
                 <div class="invalid-feedback">
                   Förnamn måste anges
                 </div>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="lastName">Efternamn</label>
-                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                <input type="text" class="form-control" id="lastName" placeholder="" th:value="${user?.getLastName()}" required>
                 <div class="invalid-feedback">
                   Efternamn måste anges
                 </div>
@@ -107,7 +107,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">@</span>
                 </div>
-                <input type="text" class="form-control" id="username" placeholder="Användarnamn" required>
+                <input type="text" class="form-control" id="username" placeholder="Användarnamn" th:value="${user?.getUserName()}" required>
                 <div class="invalid-feedback" style="width: 100%;">
                   Användarnamn måste anges
                 </div>

@@ -4,7 +4,7 @@ package com.example.SHSWEDEN.Entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.Instant;
+import java.math.BigDecimal;
 
 @Entity
 public class Listing {
@@ -30,14 +30,15 @@ public class Listing {
     private Integer image;
 
     //    @NotNull
+
     @Column(name = "\"Date\"", nullable = true)
-    private Instant date;
+    private String date;
 
     //    @NotNull
 //    @ManyToOne(fetch = FetchType.LAZY, optional = false)
 //    @JoinColumn(name = "SellerId", nullable = false)
     @Column(name = "SellerId", nullable = true)
-    private String seller;
+    private Integer seller;
 
     //    @NotNull
 //    @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -46,7 +47,7 @@ public class Listing {
     private String category;
 
     @Column(name = "ShippingCost", precision = 18)
-    private Integer shippingCost;
+    private BigDecimal shippingCost;
 
     @NotNull
     @Column(name = "DonationPercent", nullable = false)
@@ -98,19 +99,19 @@ public class Listing {
         this.image = image;
     }
 
-    public Instant getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Instant date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public String getSeller() {
+    public Integer getSeller() {
         return seller;
     }
 
-    public void setSeller(String seller) {
+    public void setSeller(Integer seller) {
         this.seller = seller;
     }
 
@@ -122,11 +123,11 @@ public class Listing {
         this.category = category;
     }
 
-    public Integer getShippingCost() {
+    public BigDecimal getShippingCost() {
         return shippingCost;
     }
 
-    public void setShippingCost(Integer shippingCost) {
+    public void setShippingCost(BigDecimal shippingCost) {
         this.shippingCost = shippingCost;
     }
 
