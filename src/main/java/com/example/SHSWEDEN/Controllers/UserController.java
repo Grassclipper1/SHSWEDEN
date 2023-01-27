@@ -46,6 +46,7 @@ public class UserController {
         return "signin";
     }
 
+
     @GetMapping("/ProfilePage")
     String ProfilePage() {
         return "ProfilePage";
@@ -71,6 +72,14 @@ public class UserController {
         session.setAttribute("userId", createdUser.getId());
 
         return "account";
+    }
+
+    @GetMapping("/CheckoutPage")
+    String checkout(HttpSession session, Model model) {
+        int userId = (int)session.getAttribute("userId");
+        User user = userService.findById(userId);
+        model.addAttribute("user", user);
+        return "CheckoutPage";
     }
 
     @GetMapping("/logout")

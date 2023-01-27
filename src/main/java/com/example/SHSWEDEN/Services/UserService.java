@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -26,6 +27,13 @@ public class UserService {
                 .orElse(null);
 
         return user;
+    }
+
+    public  User findById(int id) {
+        User user = userRepository.findById(id).orElse(null);
+
+        return user;
+
     }
 
 
