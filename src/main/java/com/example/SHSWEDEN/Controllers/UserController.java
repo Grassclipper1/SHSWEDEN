@@ -40,7 +40,9 @@ public class UserController {
     @GetMapping("/")
     String landingPage() throws Exception {
         sumOfPriceSubDonation();
-        CategoryMaker();
+        if (!categoryRepository.existsById(1)) {
+            CategoryMaker();
+        }
         return "startpage";
     }
 
