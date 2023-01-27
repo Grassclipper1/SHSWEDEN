@@ -74,7 +74,7 @@ public class UserController {
         if (id != null) {
             return "ProfilePage";
         } else
-        session.removeAttribute("userId");
+            session.removeAttribute("userId");
         model.addAttribute("user", new User());
         return "signup";
     }
@@ -133,13 +133,7 @@ public class UserController {
             } else {
                 category.setParentId(0);
             }
-
             categoryRepository.save(category);
-
-//            System.out.println("Category Id: " + category.getCategoryId());
-//            System.out.println("Name: " + category.getCategoryName());
-//            System.out.println("ParentId: " + category.getCategoryLevel());
-//            System.out.println();
         }
     }
 
@@ -148,10 +142,6 @@ public class UserController {
         int totalDonation = 0;
         for(Listing listing : listings) {
             totalDonation += listing.getPrice() - (listing.getPrice() - ((listing.getDonationPercent() * listing.getPrice()) / 100));
-//            int priceSum = listing.getPrice();
-//            int donationPercent = listing.getDonationPercent();
-//            int donation = priceSum - (donationPercent * priceSum) / 100;
-//            totalDonation += priceSum - donation;
         }
         System.out.println(totalDonation);
     }
