@@ -1,11 +1,15 @@
 package com.example.SHSWEDEN.Entities;
 
 
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+
 import java.time.Instant;
+import java.util.Date;
 
 @Entity
 public class Listing {
@@ -32,14 +36,15 @@ public class Listing {
     private Integer image;
 
     //    @NotNull
+
     @Column(name = "\"Date\"", nullable = true)
-    private Instant date;
+    private String date;
 
     //    @NotNull
 //    @ManyToOne(fetch = FetchType.LAZY, optional = false)
 //    @JoinColumn(name = "SellerId", nullable = false)
     @Column(name = "SellerId", nullable = true)
-    private String seller;
+    private Integer seller;
 
     //    @NotNull
 //    @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -100,19 +105,19 @@ public class Listing {
         this.image = image;
     }
 
-    public Instant getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Instant date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public String getSeller() {
+    public Integer getSeller() {
         return seller;
     }
 
-    public void setSeller(String seller) {
+    public void setSeller(Integer seller) {
         this.seller = seller;
     }
 
