@@ -40,12 +40,9 @@ public class UserController {
         User user = userService.findByEmailAddressAndPassword(emailAddress, password);
 
         if(user != null && user.getPassword().equals(password)){
-            session.setAttribute("UserName", user.getUserName());
-            session.setAttribute("emailAddress", emailAddress);
             session.setAttribute("userId", user.getId());
             return "ProfilePage";
         }
-
         return "signin";
     }
 
