@@ -71,7 +71,7 @@ public class UserController {
         }
         User createdUser = userRepository.save(user);
         session.setAttribute("userId", createdUser.getId());
-
+        session.setAttribute("user",createdUser);
         return "account";
     }
 
@@ -86,6 +86,7 @@ public class UserController {
     @GetMapping("/logout")
     String logout(HttpSession session) {
         session.removeAttribute("userId");
+        session.removeAttribute("user");
         return "redirect:/";
     }
     @GetMapping("/account")  //använder denna för att ha åtkomst till account för tester
