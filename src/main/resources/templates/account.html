@@ -8,7 +8,7 @@
 <h1>Welcome home</h1>
 <!--detta är martins testsida för att se så funktioner och kopplingar funkar som det ska-->
 <div>
-    <p th:text=" 'logged in as ' + ${session.user?.getFirstName()}"></p>
+    <p th:text=" 'logged in as ' + ${session.userId}"></p>
     <a href="/createListing">Sell something</a>
     <a href="/logout" class="nav-link active">Logga ut</a>
 

@@ -1,15 +1,10 @@
 package com.example.SHSWEDEN.Entities;
 
 
-import org.springframework.data.annotation.CreatedDate;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.math.BigDecimal;
-
 import java.time.Instant;
-import java.util.Date;
 
 @Entity
 public class Listing {
@@ -28,23 +23,21 @@ public class Listing {
     @Column(name = "Description", nullable = false, length = 50)
     private String description;
 
-    @NotNull
     @Column(name = "Price", nullable = false, precision = 18)
-    private BigDecimal price;
+    private Integer price;
 
     @Column(name = "Image")
     private Integer image;
 
     //    @NotNull
-
     @Column(name = "\"Date\"", nullable = true)
-    private String date;
+    private Instant date;
 
     //    @NotNull
 //    @ManyToOne(fetch = FetchType.LAZY, optional = false)
 //    @JoinColumn(name = "SellerId", nullable = false)
     @Column(name = "SellerId", nullable = true)
-    private Integer seller;
+    private String seller;
 
     //    @NotNull
 //    @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -53,7 +46,7 @@ public class Listing {
     private String category;
 
     @Column(name = "ShippingCost", precision = 18)
-    private BigDecimal shippingCost;
+    private Integer shippingCost;
 
     @NotNull
     @Column(name = "DonationPercent", nullable = false)
@@ -89,11 +82,11 @@ public class Listing {
         this.description = description;
     }
 
-    public BigDecimal getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
@@ -105,19 +98,19 @@ public class Listing {
         this.image = image;
     }
 
-    public String getDate() {
+    public Instant getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Instant date) {
         this.date = date;
     }
 
-    public Integer getSeller() {
+    public String getSeller() {
         return seller;
     }
 
-    public void setSeller(Integer seller) {
+    public void setSeller(String seller) {
         this.seller = seller;
     }
 
@@ -129,11 +122,11 @@ public class Listing {
         this.category = category;
     }
 
-    public BigDecimal getShippingCost() {
+    public Integer getShippingCost() {
         return shippingCost;
     }
 
-    public void setShippingCost(BigDecimal shippingCost) {
+    public void setShippingCost(Integer shippingCost) {
         this.shippingCost = shippingCost;
     }
 

@@ -15,15 +15,15 @@ public class Category {
     @Size(max = 50)
     @NotNull
     @Column(name = "CategoryName", nullable = false, length = 50)
-    private String categoryName;
+    private String name;
+
+//    @NotNull
+//    @Column(name = "CategoryId", nullable = false)
+//    private Integer categoryId;
 
     @NotNull
-    @Column(name = "CategoryId", nullable = false)
-    private Integer categoryId;
-
-    @NotNull
-    @Column(name = "CategoryLevel", nullable = false)
-    private Integer categoryLevel;
+    @Column(name = "ParentId", nullable = false)
+    private Integer parentId;
 
     public Integer getId() {
         return id;
@@ -33,28 +33,28 @@ public class Category {
         this.id = id;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getName() {
+        return name;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
+//    public Integer getCategoryId() {
+//        return categoryId;
+//    }
+//
+//    public void setCategoryId(Integer categoryId) {
+//        this.categoryId = categoryId;
+//    }
+
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public Integer getCategoryLevel() {
-        return categoryLevel;
-    }
-
-    public void setCategoryLevel(Integer categoryLevel) {
-        this.categoryLevel = categoryLevel;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
 }
