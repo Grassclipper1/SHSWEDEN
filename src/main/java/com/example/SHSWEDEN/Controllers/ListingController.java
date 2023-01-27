@@ -63,12 +63,14 @@ public class ListingController {
 
 
         @PostMapping("/createListing")
-    String addedListing(@Valid Listing listing, HttpSession session, BindingResult bindingResult){
+    String addedListing(@Valid Listing listing, HttpSession session, Model model, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             System.out.println("error");
             return "createListing";
         }
-        Integer id = (Integer) session.getAttribute("userId");
+/*        Integer id = (Integer) session.getAttribute("userId");*/
+        String userName = (String) session.getAttribute("userName");
+
         listingRepository.save(listing);
         return "redirect:/allListings";
     }
