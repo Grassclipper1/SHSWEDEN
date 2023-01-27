@@ -124,7 +124,7 @@
 
             <div class="mb-3">
               <label for="address">Adress</label>
-              <input type="text" class="form-control" id="address" placeholder="Lilla varvsgatan 23A 21176" required>
+              <input type="text" class="form-control" id="address" placeholder="Lilla varvsgatan 23A" th:value="${user?.getStreetAddress()}" required>
               <div class="invalid-feedback">
                 Vänligen ange leveransadress
               </div>
