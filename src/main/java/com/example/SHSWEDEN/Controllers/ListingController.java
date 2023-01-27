@@ -3,8 +3,10 @@ package com.example.SHSWEDEN.Controllers;
 
 import com.example.SHSWEDEN.Entities.Listing;
 import com.example.SHSWEDEN.Entities.User;
+import com.example.SHSWEDEN.Models.ListingObj;
 import com.example.SHSWEDEN.Repos.ListingRepository;
 import com.example.SHSWEDEN.Repos.UserRepository;
+import com.example.SHSWEDEN.Services.ListingService;
 import com.example.SHSWEDEN.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +23,7 @@ import java.util.List;
 public class ListingController {
     private static final int PAGE_SIZE = 10;
     @Autowired
-    private ListingRepository listingRepository;
+    private ListingService listingService;
     @Autowired
     private UserService userService;
 
@@ -43,9 +45,10 @@ public class ListingController {
 
     @GetMapping("/oneListing/{page}/{id}")
     public String listing(Model model, @PathVariable Integer page, @PathVariable Integer id) {
-        Listing listing = listingRepository.findById(id).get();
+        ListingObj listingObj = listingService.getListing(id);
         model.addAttribute("page", page);
-        model.addAttribute("listing", listing);
+        model.addAttribute("listing", listingObj.getListing());
+        model.addAttribute("seller", listingObj.getSeller());
 
         return "oneListing";
     }
@@ -54,6 +57,7 @@ public class ListingController {
     @GetMapping("/createListing")
     String createListing(HttpSession session, Model model) {
         Integer id = (Integer) session.getAttribute("userId");
+
         if (id != null) {
             Listing listing = new Listing();
             listing.setSeller(id);
@@ -72,10 +76,8 @@ public class ListingController {
             System.out.println("error");
             return "createListing";
         }
-/*        Integer id = (Integer) session.getAttribute("userId");*/
-        String userName = (String) session.getAttribute("userName");
 
-        listingRepository.save(listing);
+        listingService.save(listing);
         return "redirect:/allListings";
     }
 
@@ -89,14 +91,14 @@ public class ListingController {
         return result;
     }
     private List<Listing> getPage(int page, int pageSize) {
-        List<Listing> listings = (List<Listing>) listingRepository.findAll();
+        List<Listing> listings = (List<Listing>) listingService.findAll();
         int from = Math.max(0,page*pageSize);
         int to = Math.min(listings.size(),(page+1)*pageSize);
 
         return listings.subList(from, to);
     }
     private int numberOfPages(int pageSize) {
-        List<Listing> listings = (List<Listing>) listingRepository.findAll();
+        List<Listing> listings = (List<Listing>) listingService.findAll();
         return (int)Math.ceil((listings.size()) / pageSize);
     }
 

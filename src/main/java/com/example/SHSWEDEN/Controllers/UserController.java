@@ -41,6 +41,7 @@ public class UserController {
 
         if(user != null && user.getPassword().equals(password)){
             session.setAttribute("userId", user.getId());
+            session.setAttribute("user", user);
             return "ProfilePage";
         }
         return "signin";
