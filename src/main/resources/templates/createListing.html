@@ -10,6 +10,9 @@
 <form th:object="${listing}" action="/createListing" method="POST">
 
   <input type="hidden" th:field="*{id}">
+
+  <input type="hidden" th:field="*{seller}" th:value="${session.userId}">
+
   <label for="title">Title</label>
   <input type="text" th:field="*{title}" id="title">
 

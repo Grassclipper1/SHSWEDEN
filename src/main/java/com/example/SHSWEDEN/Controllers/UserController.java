@@ -52,7 +52,12 @@ public class UserController {
     }
 
     @GetMapping("/signup")
-    String signup(Model model) {
+    String signup(Model model, HttpSession session) {
+        Integer id = (Integer) session.getAttribute("userId");
+        if (id != null) {
+            return "ProfilePage";
+        } else
+        session.removeAttribute("userId");
         model.addAttribute("user", new User());
         return "signup";
     }
