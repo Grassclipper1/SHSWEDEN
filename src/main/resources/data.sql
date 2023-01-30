@@ -7,6 +7,28 @@
 
     INSERT
     INTO
+        "user"
+         (first_Name, Last_Name, User_Name, PassWord, Email_Address, Street_Address, zip_id)
+    VALUES
+        ('Kalle', 'Karlsson','LillFlugan', 'melon', 'Kalle@Karlsson.com', 'Drottninggatan', '55555');
+
+   INSERT
+    INTO
+        "user"
+         (first_Name, Last_Name, User_Name, PassWord, Email_Address, Street_Address, zip_id)
+    VALUES
+        ('Stina', 'Olsson','Vårblomman', 'sommar', 'Stina@Olsson.com', 'Örtgatan', '32434');
+
+   INSERT
+    INTO
+        "user"
+         (first_Name, Last_Name, User_Name, PassWord, Email_Address, Street_Address, zip_id)
+    VALUES
+        ('Kal', 'P.Dal','BuffaloBill', 'ängel', 'Kal@PDal.com', 'Ystadvägen', '21464');
+
+
+    INSERT
+    INTO
         listing
         (title, description, price, "date", seller_id, category_id, donation_percent, donation_id)
     VALUES
@@ -17,8 +39,28 @@
                 listing
                 (title, description, price, "date", seller_id, category_id, donation_percent, donation_id)
             VALUES
-                ('Kalsonger', 'Välanvända kalsonger, några hål', 450, CURRENT_TIMESTAMP, 1, 1, 10, 1);
+                ('Kalsonger', 'Välanvända kalsonger, några hål', 450, CURRENT_TIMESTAMP, 2, 1, 10, 2);
 
+ INSERT
+    INTO
+        listing
+        (title, description, price, "date", seller_id, category_id, donation_percent, donation_id)
+    VALUES
+        ('Gitarr', 'Akustisk gitarr, stålsträngad. Några repor. Fenderkopia. ', 800, CURRENT_TIMESTAMP, 4, 1, 10, 3);
+
+    INSERT
+       INTO
+           listing
+           (title, description, price, "date", seller_id, category_id, donation_percent, donation_id)
+       VALUES
+           ('Hörlurar', 'Boze hörlurar, säjer pga lyxfällan', 999, CURRENT_TIMESTAMP, 4, 1, 10, 4);
+
+      INSERT
+         INTO
+             listing
+             (title, description, price, "date", seller_id, category_id, donation_percent, donation_id)
+         VALUES
+             ('Porslinkoppar', 'Fyra koppar av märket petunia', 75, CURRENT_TIMESTAMP, 3, 1, 10, 5);
 
     INSERT
     INTO

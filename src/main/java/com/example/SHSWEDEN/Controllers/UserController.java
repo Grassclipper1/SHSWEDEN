@@ -60,6 +60,7 @@ public class UserController {
 
         if(user != null && user.getPassword().equals(password)){
             session.setAttribute("userId", user.getId());
+            session.setAttribute("user", user);
             return "ProfilePage";
         }
         return "signin";
@@ -108,9 +109,10 @@ public class UserController {
         return "redirect:/";
     }
     @GetMapping("/account")  //använder denna för att ha åtkomst till account för tester
-    String account(HttpSession session) {
+    String account(HttpSession session, Model model) {
         Integer id = (Integer) session.getAttribute("userId");
         if (id != null) {
+            model.addAttribute("seller", id);
             return "account";
         } else
             session.removeAttribute("userId");

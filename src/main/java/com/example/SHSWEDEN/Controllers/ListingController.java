@@ -26,13 +26,24 @@ public class ListingController {
     private ListingService listingService;
     @Autowired
     private UserService userService;
+    @Autowired
+    ListingRepository listingRepository;
 
     @GetMapping("/allListings")
-    public String listings(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
+    public String listings(Model model, @RequestParam(value = "sortBy", required = false, defaultValue = "0")
+    int sortBy, @RequestParam(value="page", required=false, defaultValue="1") int page){
 
-        List<Listing> listings = getPage(page-1, PAGE_SIZE);
+
+        List<Listing> listings;
+
         int pageCount = numberOfPages(PAGE_SIZE);
         int[] pages = toArray(pageCount);
+
+           if(sortBy != 0) {
+            listings =  listingRepository.getListingBySeller(String.valueOf(sortBy));
+           }
+
+         else listings = listingService.findAll();
 
         model.addAttribute("listings", listings);
         model.addAttribute("pages", pages);
