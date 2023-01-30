@@ -1,0 +1,43 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Annons</title>
+</head>
+<body>
+<h1>Annons</h1>
+<div>
+    <p><a th:href="'/allListings?page=' + ${page}">Tillbaka till alla annonser</a></p>
+</div>
+<table>
+    <tr>
+        <th>Title</th>
+        <th th:text="${listing?.getTitle()}"></th>
+    </tr>
+    <tr>
+        <th>Beskrivning</th>
+        <th th:text="${listing?.getDescription()}"></th>
+    </tr>
+    <tr>
+        <th>Pris</th>
+        <th th:text="${listing?.getPrice()}"></th>
+    </tr>
+    <tr>
+        <th>Fraktkostnad</th>
+        <th th:text="${listing?.getShippingCost()}"></th>
+    </tr>
+    <tr>
+        <th>Välgörenhetsprocent</th>
+        <th th:text="${listing?.getDonationPercent()}"></th>
+    </tr>
+    <tr>
+        <th>Datum</th>
+        <th th:text="${listing?.getDate()}"></th>
+    </tr>
+    <tr>
+        <th>Säljare</th>
+        <th th:text="${seller?.getFirstName()}"></th>
+    </tr>
+</table>
+<!--<div><a th:href="'/' + ${listing.id}">Edit listing</a></div>-->
+</body>
+</html>
