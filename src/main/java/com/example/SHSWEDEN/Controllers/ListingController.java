@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -34,8 +37,9 @@ public class ListingController {
     ListingRepository listingRepository;
 
     @GetMapping("/allListings")
-    public String listings(Model model, @RequestParam(value = "sortBy", required = false, defaultValue = "0")
-    int sortBy, @RequestParam(value="page", required=false, defaultValue="1") int page){
+    public String listings(Model model, @RequestParam(value = "seller", required = false, defaultValue = "0")
+    int seller, @RequestParam(value = "category", required = false, defaultValue = "0")
+    int category, @RequestParam(value="page", required=false, defaultValue="1") int page){
 
 
         List<Listing> listings;
@@ -43,8 +47,11 @@ public class ListingController {
         int pageCount = numberOfPages(PAGE_SIZE);
         int[] pages = toArray(pageCount);
 
-           if(sortBy != 0) {
-            listings =  listingRepository.getListingBySeller(String.valueOf(sortBy));
+           if(seller != 0) {
+            listings =  listingRepository.getListingBySeller(String.valueOf(seller));
+           }
+           else if (category != 0){
+               listings = listingRepository.getListingByCategory(String.valueOf(category));
            }
 
          else listings = listingService.findAll();
@@ -79,7 +86,7 @@ public class ListingController {
         if (id != null) {
             Listing listing = new Listing();
             listing.setSeller(id);
-            listing.setDate(String.valueOf(new Date()));
+            listing.setDate(String.valueOf(LocalDate.now()));
             model.addAttribute("listing", listing);
             return "createListing";
         } else
