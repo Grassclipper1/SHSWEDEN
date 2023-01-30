@@ -39,4 +39,16 @@ public class ListingService {
     }
 
 
+    public List<Listing> createListingList(int seller, int category) {
+        List<Listing> listings;
+        if(seller != 0) {
+            listings =  listingRepository.getListingBySeller(String.valueOf(seller));
+        }
+        else if (category != 0){
+            listings = listingRepository.getListingByCategory(String.valueOf(category));
+        }
+        else listings = findAll();
+
+        return listings;
+    }
 }

@@ -42,20 +42,10 @@ public class ListingController {
     int category, @RequestParam(value="page", required=false, defaultValue="1") int page){
 
 
-        List<Listing> listings;
+        List<Listing> listings = listingService.createListingList(seller, category);
 
         int pageCount = numberOfPages(PAGE_SIZE);
         int[] pages = toArray(pageCount);
-
-           if(seller != 0) {
-            listings =  listingRepository.getListingBySeller(String.valueOf(seller));
-           }
-           else if (category != 0){
-               listings = listingRepository.getListingByCategory(String.valueOf(category));
-           }
-
-         else listings = listingService.findAll();
-
         model.addAttribute("listings", listings);
         model.addAttribute("pages", pages);
         model.addAttribute("currentPage", page);
