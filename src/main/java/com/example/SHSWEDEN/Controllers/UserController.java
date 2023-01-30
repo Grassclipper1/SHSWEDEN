@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.xml.parsers.DocumentBuilder;
@@ -38,8 +39,10 @@ public class UserController {
     CategoryRepository categoryRepository;
 
     @GetMapping("/")
-    String landingPage() throws Exception {
-        sumOfPriceSubDonation();
+    String landingPage(Model model) throws Exception {
+        model.addAttribute("sumOfDonations", sumOfPriceSubDonation());
+        model.getAttribute("sumOfDonations");
+        /*sumOfPriceSubDonation();*/
         if (!categoryRepository.existsById(1)) {
             CategoryMaker();
         }
@@ -137,14 +140,45 @@ public class UserController {
         }
     }
 
-    private void sumOfPriceSubDonation() {
+        /* private void sumOfPriceSubDonation() {
         List<Listing> listings = listingRepository.findAll();
         int totalDonation = 0;
         for(Listing listing : listings) {
             totalDonation += listing.getPrice() - (listing.getPrice() - ((listing.getDonationPercent() * listing.getPrice()) / 100));
         }
         System.out.println(totalDonation);
+    }*/
+
+    public int sumOfPriceSubDonation() {
+        List<Listing> listings = listingRepository.findAll();
+        int totalDonation = 0;
+        for(Listing listing : listings) {
+            totalDonation += listing.getPrice() - (listing.getPrice() - ((listing.getDonationPercent() * listing.getPrice()) / 100));
+        }
+        /*System.out.println(totalDonation);*/
+        return totalDonation;
     }
+
+    /* ----------------------- */
+
+/*    @GetMapping("/")
+    String startpage2(Model model) {
+        model.addAttribute("sum", sumOfPriceSubDonation());
+        model.getAttribute("sum");
+        return "startpage";
+    }*/
+
+
+/*    @GetMapping("/")
+    String landingPage() throws Exception {
+        *//*sumOfPriceSubDonation();*//*
+        if (!categoryRepository.existsById(1)) {
+            CategoryMaker();
+        }
+        return "startpage";
+    }*/
+
+
 
 
 }
