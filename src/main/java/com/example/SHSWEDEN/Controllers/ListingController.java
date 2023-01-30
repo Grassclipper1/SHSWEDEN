@@ -1,11 +1,13 @@
 package com.example.SHSWEDEN.Controllers;
 
 
+import com.example.SHSWEDEN.Entities.Category;
 import com.example.SHSWEDEN.Entities.Listing;
 import com.example.SHSWEDEN.Entities.User;
 import com.example.SHSWEDEN.Models.ListingObj;
 import com.example.SHSWEDEN.Repos.ListingRepository;
 import com.example.SHSWEDEN.Repos.UserRepository;
+import com.example.SHSWEDEN.Services.CategoryService;
 import com.example.SHSWEDEN.Services.ListingService;
 import com.example.SHSWEDEN.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,8 @@ public class ListingController {
     private ListingService listingService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private CategoryService categoryService;
 
     @GetMapping("/allListings")
     public String listings(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
@@ -58,6 +62,9 @@ public class ListingController {
     String createListing(HttpSession session, Model model) {
         Integer id = (Integer) session.getAttribute("userId");
 
+        List<Category> categories = categoryService.findByParentId(0);
+        model.addAttribute("categories", categories);
+
         if (id != null) {
             Listing listing = new Listing();
             listing.setSeller(id);
@@ -67,6 +74,12 @@ public class ListingController {
         } else
             session.removeAttribute("userId");
         return "redirect:/allListings";
+    }
+
+
+    @RequestMapping(value = "/createListing/{parentId}", method = RequestMethod.GET)
+    public @ResponseBody List<Category> subCategories(@PathVariable("parentId") Integer parentId){
+        return this.categoryService.findByParentId(parentId);
     }
 
 
