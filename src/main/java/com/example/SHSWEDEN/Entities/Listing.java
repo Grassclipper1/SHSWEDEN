@@ -5,7 +5,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
-import java.time.Instant;
 
 @Entity
 public class Listing {
@@ -24,22 +23,22 @@ public class Listing {
     @Column(name = "Description", nullable = false, length = 50)
     private String description;
 
-    @NotNull
     @Column(name = "Price", nullable = false, precision = 18)
-    private BigDecimal price;
+    private Integer price;
 
     @Column(name = "Image")
     private Integer image;
 
     //    @NotNull
+
     @Column(name = "\"Date\"", nullable = true)
-    private Instant date;
+    private String date;
 
     //    @NotNull
 //    @ManyToOne(fetch = FetchType.LAZY, optional = false)
 //    @JoinColumn(name = "SellerId", nullable = false)
     @Column(name = "SellerId", nullable = true)
-    private String seller;
+    private Integer seller;
 
     //    @NotNull
 //    @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -84,11 +83,11 @@ public class Listing {
         this.description = description;
     }
 
-    public BigDecimal getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
@@ -100,19 +99,19 @@ public class Listing {
         this.image = image;
     }
 
-    public Instant getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Instant date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public String getSeller() {
+    public Integer getSeller() {
         return seller;
     }
 
-    public void setSeller(String seller) {
+    public void setSeller(Integer seller) {
         this.seller = seller;
     }
 

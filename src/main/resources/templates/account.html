@@ -2,15 +2,16 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Secret</title>
+    <title>account</title>
 </head>
 <body>
 <h1>Welcome home</h1>
+<!--detta är martins testsida för att se så funktioner och kopplingar funkar som det ska-->
 <div>
-    <p th:text="${'Logged in as: ' + #httpServletRequest.remoteUser}"></p>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Logout"/>
-    </form>
+    <p th:text=" 'logged in as ' + ${session.user?.getFirstName()}"></p>
+    <a href="/createListing">Sell something</a>
+    <a href="/logout" class="nav-link active">Logga ut</a>
+
 </div>
 
 </body>

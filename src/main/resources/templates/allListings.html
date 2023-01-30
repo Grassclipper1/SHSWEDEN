@@ -15,7 +15,7 @@
 
   </tr>
   <tr th:each="listing : ${listings}">
-    <th><a th:href="'/listing/' + ${currentPage} + '/' + ${listing.id}" th:text="${listing.title}"></a></th>
+    <th><a th:href="'/oneListing/' + ${currentPage} + '/' + ${listing.id}" th:text="${listing.title}"></a></th>
     <th th:text="${listing.description}"></th>
 
   </tr>

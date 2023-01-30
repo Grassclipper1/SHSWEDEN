@@ -5,13 +5,20 @@
   <title>Title</title>
 </head>
 <body>
+
+<div><p th:text=" 'logged in as ' + ${session.user?.getFirstName()}"></p></div>
 <form th:object="${listing}" action="/createListing" method="POST">
+
   <input type="hidden" th:field="*{id}">
+
+  <input type="hidden" th:field="*{seller}">
+  <input type="hidden" th:field="*{date}">
+
   <label for="title">Title</label>
   <input type="text" th:field="*{title}" id="title">
 
   <label for="description">description</label>
-  <input type="text" th:field="*{description}"  id="description">
+  <textarea th:field="*{description}" id="description"></textarea>
 
   <label for="price">price</label>
   <input type="text" th:field="*{price}" id="price">
