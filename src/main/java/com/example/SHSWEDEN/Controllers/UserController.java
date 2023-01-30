@@ -96,10 +96,15 @@ public class UserController {
 
     @GetMapping("/CheckoutPage")
     String checkout(HttpSession session, Model model) {
-        int userId = (int)session.getAttribute("userId");
-        User user = (User) session.getAttribute("user");
+        Integer userId = (Integer) session.getAttribute("userId");
+        if (userId != null){
+        User user = userService.findById(userId);
         model.addAttribute("user", user);
         return "CheckoutPage";
+        }
+        else
+            session.removeAttribute("userId");
+        return "redirect:/";
     }
 
     @GetMapping("/logout")

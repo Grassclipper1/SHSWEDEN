@@ -62,6 +62,25 @@
          VALUES
              ('Porslinkoppar', 'Fyra koppar av märket petunia', 75, CURRENT_TIMESTAMP, 3, 1, 10, 5);
 
+  INSERT
+         INTO
+             listing
+             (title, description, price, "date", seller_id, category_id, donation_percent, donation_id)
+         VALUES
+             ('Lego', 'Säljer lego då min son inte leker med det längre', 300, CURRENT_TIMESTAMP, 3, 1, 10, 6);
+  INSERT
+         INTO
+             listing
+             (title, description, price, "date", seller_id, category_id, donation_percent, donation_id)
+         VALUES
+             ('Smart-tv', 'En samsung smart-tv, aldrig använd.', 5000, CURRENT_TIMESTAMP, 4, 1, 5, 7);
+  INSERT
+         INTO
+             listing
+             (title, description, price, "date", seller_id, category_id, donation_percent, donation_id)
+         VALUES
+             ('Soffa', 'Fin tvåsitsig soffa, ikea', 200, CURRENT_TIMESTAMP, 2, 1, 10, 8);
+
     INSERT
     INTO
       feedback
