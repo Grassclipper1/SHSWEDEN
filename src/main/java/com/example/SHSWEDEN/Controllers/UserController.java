@@ -185,7 +185,10 @@ public class UserController {
         return "startpage";
     }*/
 
-
+    @GetMapping("/blog")
+    String Blog() {
+        return "blog";
+    }
 
 
 }

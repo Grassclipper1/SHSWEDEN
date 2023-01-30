@@ -130,3 +130,15 @@ h1, h2, h3, h4, h5, h6 {
 .blog-footer p:last-child {
   margin-bottom: 0;
 }
+.jumbotron {
+    background: #003B29;
+    color: #FEF880;
+}
+
+counter-box.colored p, .counter-box.colored .counter {
+    color: #FEF880;
+}
+.text-color {
+color: #FEF880;
+padding-right: 24px;
+}
