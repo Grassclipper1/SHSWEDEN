@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.xml.parsers.DocumentBuilder;
@@ -38,8 +39,10 @@ public class UserController {
     CategoryRepository categoryRepository;
 
     @GetMapping("/")
-    String landingPage() throws Exception {
-        sumOfPriceSubDonation();
+    String landingPage(Model model) throws Exception {
+        model.addAttribute("sumOfDonations", sumOfPriceSubDonation());
+        model.getAttribute("sumOfDonations");
+        /*sumOfPriceSubDonation();*/
         if (!categoryRepository.existsById(1)) {
             CategoryMaker();
         }
@@ -57,6 +60,7 @@ public class UserController {
 
         if(user != null && user.getPassword().equals(password)){
             session.setAttribute("userId", user.getId());
+            session.setAttribute("user", user);
             return "ProfilePage";
         }
         return "signin";
@@ -92,10 +96,15 @@ public class UserController {
 
     @GetMapping("/CheckoutPage")
     String checkout(HttpSession session, Model model) {
-        int userId = (int)session.getAttribute("userId");
+        Integer userId = (Integer) session.getAttribute("userId");
+        if (userId != null){
         User user = userService.findById(userId);
         model.addAttribute("user", user);
         return "CheckoutPage";
+        }
+        else
+            session.removeAttribute("userId");
+        return "redirect:/";
     }
 
     @GetMapping("/logout")
@@ -105,9 +114,10 @@ public class UserController {
         return "redirect:/";
     }
     @GetMapping("/account")  //använder denna för att ha åtkomst till account för tester
-    String account(HttpSession session) {
+    String account(HttpSession session, Model model) {
         Integer id = (Integer) session.getAttribute("userId");
         if (id != null) {
+            model.addAttribute("seller", id);
             return "account";
         } else
             session.removeAttribute("userId");
@@ -137,14 +147,45 @@ public class UserController {
         }
     }
 
-    private void sumOfPriceSubDonation() {
+        /* private void sumOfPriceSubDonation() {
         List<Listing> listings = listingRepository.findAll();
         int totalDonation = 0;
         for(Listing listing : listings) {
             totalDonation += listing.getPrice() - (listing.getPrice() - ((listing.getDonationPercent() * listing.getPrice()) / 100));
         }
         System.out.println(totalDonation);
+    }*/
+
+    public int sumOfPriceSubDonation() {
+        List<Listing> listings = listingRepository.findAll();
+        int totalDonation = 0;
+        for(Listing listing : listings) {
+            totalDonation += listing.getPrice() - (listing.getPrice() - ((listing.getDonationPercent() * listing.getPrice()) / 100));
+        }
+        /*System.out.println(totalDonation);*/
+        return totalDonation;
     }
+
+    /* ----------------------- */
+
+/*    @GetMapping("/")
+    String startpage2(Model model) {
+        model.addAttribute("sum", sumOfPriceSubDonation());
+        model.getAttribute("sum");
+        return "startpage";
+    }*/
+
+
+/*    @GetMapping("/")
+    String landingPage() throws Exception {
+        *//*sumOfPriceSubDonation();*//*
+        if (!categoryRepository.existsById(1)) {
+            CategoryMaker();
+        }
+        return "startpage";
+    }*/
+
+
 
 
 }

@@ -11,6 +11,7 @@
     <p th:text=" 'logged in as ' + ${session.user?.getFirstName()}"></p>
     <a href="/createListing">Sell something</a>
     <a href="/logout" class="nav-link active">Logga ut</a>
+    <td><a th:href="'/allListings?sortBy=' + ${seller}"><button type="button" class="btn btn-dark">My listings</button></a></td>
 
 </div>
 

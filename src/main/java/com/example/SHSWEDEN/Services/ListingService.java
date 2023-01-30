@@ -6,6 +6,7 @@ import com.example.SHSWEDEN.Models.ListingObj;
 import com.example.SHSWEDEN.Repos.ListingRepository;
 import com.example.SHSWEDEN.Repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,5 +37,6 @@ public class ListingService {
     public List<Listing> findAll(){
         return listingRepository.findAll();
     }
+
 
 }

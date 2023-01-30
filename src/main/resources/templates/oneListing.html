@@ -1,43 +1,140 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8"></meta>
-    <title>Listings</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Startsida</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"></script>
+    <link href="../Css/album.css" rel="stylesheet">
+    <!-- Link startpage.css -->
+    <link rel="stylesheet" href="/static/css/alllistings.css" th:href="'/css/alllistings.css'">
+    <link rel="stylesheet" href="/static/css/blog.css" th:href="'/css/blog.css'">
+    <!-- Link javascript.js -->
+    <script type="text/javascript" th:src="@{/js/javascript.js}"></script>
+    <!-- Link google icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 </head>
 <body>
-<h1>Listing</h1>
-<div>
-    <p><a th:href="'/allListings?page=' + ${page}">Back to listings</a></p>
+
+
+<!-- NAVBAR START -->
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light p-2">
+
+        <div class="container-fluid"> <img src="../images/secondcircle_logo.png" class="img-fluid rounded" alt="..." style="width: 135px; height: 50x;"> <a class="navbar-brand name" href="#"></a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"> <a class="nav-link active" aria-current="page" href="#">Om oss</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="#">Kategorier</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="#">Blogg</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="#">Kontakt</a> </li>
+                </ul>
+                <a href="/signin"><button type="button" class="btn btn-warning btn-sm">Logga in</button></a>
+                <a href="/signup"><button type="button " class="btn btn-link btn-sm">Skapa användare</button></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ONE LISTING OBJECT START -->
+
+    <div class="container-listing">
+        <div class="title-container">
+            <h1>Ny annons</h1>
+        </div>
+        <div class="container-article">
+            <table>
+                <tr th:each="listing : ${listings}" class="article" style="">
+                    <div class="image-container">
+                        <td><img src="../images/product_shoes_1.jpg"></td>
+                    </div>
+                    <th><a th:href="'/oneListing/' + ${currentPage} + '/' + ${listing.id}" th:text="${listing.title}"></a>
+                    </th>
+                    <th th:text="${listing.description}"></th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-6">
+                <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                    <div class="card-body d-flex flex-column align-items-start">
+                        <table>
+                            <tr>
+                                <th>Typ av vara</th>
+                                <th th:text="${listing?.getTitle()}"></th>
+                            </tr>
+                            <tr>
+                                <th>Beskrivning</th>
+                                <th th:text="${listing?.getDescription()}"></th>
+                            </tr>
+                            <tr>
+                                <th>Pris</th>
+                                <th th:text="${listing?.getPrice()}"></th>
+                            </tr>
+                            <tr>
+                                <th>Fraktkostnad</th>
+                                <th th:text="${listing?.getShippingCost()}"></th>
+                            </tr>
+                            <tr>
+                                <th>Välgörenhetsprocent %</th>
+                                <th th:text="${listing?.getDonationPercent()}"></th>
+                            </tr>
+                            <tr>
+                                <th>Datum</th>
+                                <th th:text="${listing?.getDate()}"></th>
+                            </tr>
+                            <tr>
+                                <th>Säljare</th>
+                                <th th:text="${seller?.getFirstName()}"></th>
+                            </tr>
+
+                        </table>
+
+                        <a href="/CheckoutPage" class="btn btn-warning btn-lg btn-block">Köp</a>
+                    </div>
+                    <img class="card-img-right flex-auto d-none d-md-block" src="../images/signup_hero.jpg"
+                         alt="Card image cap">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ONE LISTING OBJECT END -->
 </div>
-<table>
-    <tr>
-        <th>Title</th>
-        <th th:text="${listing?.getTitle()}"></th>
-    </tr>
-    <tr>
-        <th>description</th>
-        <th th:text="${listing?.getDescription()}"></th>
-    </tr>
-    <tr>
-        <th>Price</th>
-        <th th:text="${listing?.getPrice()}"></th>
-    </tr>
-    <tr>
-        <th>shippingCost</th>
-        <th th:text="${listing?.getShippingCost()}"></th>
-    </tr>
-    <tr>
-        <th>donationPercent</th>
-        <th th:text="${listing?.getDonationPercent()}"></th>
-    </tr>
-    <tr>
-        <th>date</th>
-        <th th:text="${listing?.getDate()}"></th>
-    </tr>
-    <tr>
-        <th>seller</th>
-        <th th:text="${seller?.getFirstName()}"></th>
-    </tr>
-</table>
-<!--<div><a th:href="'/' + ${listing.id}">Edit listing</a></div>-->
+<!-- NAVBAR END -->
+
+
+<!--<a href="/createListing">New listing</a>-->
+
+
+
+
+<div>
+
+        <span th:if="${showPrev}">
+            <a th:href="'/?page=' + ${currentPage-1}" th:text="Previous"></a>
+        </span>
+
+    <span th:each="page : ${pages}">
+            <span th:if="${currentPage == page}" th:text="${page}"></span>
+            <a th:if="${currentPage != page}" th:href="'/?page=' + ${page}" th:text="${page}"></a>
+        </span>
+
+    <span th:if="${showNext}">
+            <a th:href="'/?page=' + ${currentPage+1}" th:text="Next"></a>
+        </span>
+</div>
+
 </body>
 </html>
