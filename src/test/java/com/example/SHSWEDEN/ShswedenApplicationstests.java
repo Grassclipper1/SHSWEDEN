@@ -48,6 +48,9 @@ public class ShswedenApplicationstests {
                         MockMvcRequestBuilders.get("/signup"))
                .andExpect(status().is2xxSuccessful())
                .andExpect(model().attribute("user", notNullValue()))
-               .andExpect(MockMvcResultMatchers.content().string(containsString("Förnamn")));
+               .andExpect(MockMvcResultMatchers.content().string(containsString("Förnamn")))
+                .andExpect(MockMvcResultMatchers.content().string(containsString("Efternamn")))
+               .andExpect(MockMvcResultMatchers.content().string(containsString("Användarnamn")))
+               .andExpect(MockMvcResultMatchers.content().string(containsString("Adress")));
    }
 }
