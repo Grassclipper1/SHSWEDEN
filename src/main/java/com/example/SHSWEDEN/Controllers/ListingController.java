@@ -74,6 +74,7 @@ public class ListingController {
 
 
 
+
     @GetMapping("/createListing")
     String createListing(HttpSession session, Model model) {
         Integer id = (Integer) session.getAttribute("userId");
