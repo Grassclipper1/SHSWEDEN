@@ -100,6 +100,7 @@ public class UserController {
         if (userId != null){
         User user = userService.findById(userId);
         model.addAttribute("user", user);
+        session.getAttribute("listing");
         return "CheckoutPage";
         }
         else

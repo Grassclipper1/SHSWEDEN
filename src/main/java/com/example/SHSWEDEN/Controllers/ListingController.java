@@ -26,7 +26,7 @@ import java.util.List;
 
 @Controller
 public class ListingController {
-    private static final int PAGE_SIZE = 10;
+
     @Autowired
     private ListingService listingService;
     @Autowired
@@ -39,31 +39,38 @@ public class ListingController {
     @GetMapping("/allListings")
     public String listings(Model model, @RequestParam(value = "seller", required = false, defaultValue = "0")
     int seller, @RequestParam(value = "category", required = false, defaultValue = "0")
-    int category, @RequestParam(value="page", required=false, defaultValue="1") int page){
-
+    int category){
 
         List<Listing> listings = listingService.createListingList(seller, category);
 
-        int pageCount = numberOfPages(PAGE_SIZE);
-        int[] pages = toArray(pageCount);
+
         model.addAttribute("listings", listings);
-        model.addAttribute("pages", pages);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("showPrev", page > 1);
-        model.addAttribute("showNext", page < pageCount);
 
         return "allListings";
     }
 
-    @GetMapping("/oneListing/{page}/{id}")
-    public String listing(Model model, @PathVariable Integer page, @PathVariable Integer id) {
+    @GetMapping("/oneListing/{id}")
+    public String listing(Model model,  @PathVariable Integer id, HttpSession session) {
         ListingObj listingObj = listingService.getListing(id);
-        model.addAttribute("page", page);
+
         model.addAttribute("listing", listingObj.getListing());
         model.addAttribute("seller", listingObj.getSeller());
 
+
         return "oneListing";
     }
+
+    @PostMapping("/oneListing")
+    public String listing1(HttpSession session, @RequestParam Integer id) {
+        Listing listing = listingRepository.getById(id);
+        session.setAttribute("listing", listing);
+        System.out.println(listing);
+
+            return "CheckoutPage";
+    }
+
+
+
 
 
     @GetMapping("/createListing")
@@ -104,23 +111,6 @@ public class ListingController {
 
 
 
-    private int[] toArray(int num) {
-        int[] result = new int[num];
-        for (int i = 0; i < num; i++) {
-            result[i] = i+1;
-        }
-        return result;
-    }
-    private List<Listing> getPage(int page, int pageSize) {
-        List<Listing> listings = (List<Listing>) listingService.findAll();
-        int from = Math.max(0,page*pageSize);
-        int to = Math.min(listings.size(),(page+1)*pageSize);
 
-        return listings.subList(from, to);
-    }
-    private int numberOfPages(int pageSize) {
-        List<Listing> listings = (List<Listing>) listingService.findAll();
-        return (int)Math.ceil((listings.size()) / pageSize);
-    }
 
 }
