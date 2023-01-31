@@ -1,0 +1,20 @@
+body {
+
+background-color: #003B29}
+
+a {
+color: #FFC107; }
+a:hover {
+
+color: #ffdf80;}
+
+.breadcrumb-item.active {
+
+color: #ffdf80;}
+
+.breadcrumb {
+padding: 12px;
+border-radius: 8px}
+
+.progress-bar {
+background-color: #003B29;
