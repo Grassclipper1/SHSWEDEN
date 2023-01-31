@@ -55,6 +55,19 @@ public class User {
     @Column(name = "DonationSum", precision = 18)
     private BigDecimal donationSum;
 
+    public User() {
+    }
+
+    public User(String firstName, String lastName, String userName, String password, String emailAddress, String streetAddress, String zip) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
+        this.emailAddress = emailAddress;
+        this.streetAddress = streetAddress;
+        this.zip = zip;
+    }
+
     public Integer getId() {
         return id;
     }
