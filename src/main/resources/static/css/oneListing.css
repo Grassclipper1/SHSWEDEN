@@ -1,0 +1,218 @@
+* {
+box-sizing: border-box!important;
+}
+
+body {
+margin: auto;
+}
+
+/* One listing start */
+
+.container-one-listing {
+display: flex;
+justify-content: space-between;
+
+
+height: 300px;
+}
+
+.left-container{
+flex: 0 0 50%;
+padding: 16px;
+
+background-image: url("../images/product_shoes_1.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+  background-position: center;
+
+
+position: relative;
+}
+
+.right-container{
+flex: 0 0 50%;
+justify-content: center;
+align-items: center;
+
+padding: 24px;
+padding-right: 200px;
+
+}
+
+.button-style {
+width: 100%;
+}
+
+.listing-description {
+
+background-color: #DDDDD;
+}
+
+tbody {
+
+}
+
+table {
+display: flex;
+flex-direction: column;
+}
+
+
+/* ALL INFO FOR PRODUCT START */
+
+.single-price-container {
+display: flex;
+justify-content: space-between;
+}
+
+.single-donation-container {
+position: absolute;
+right: 24px;
+
+padding: 12px;
+background-color: #003B29;
+display: flex;
+align-items: center;
+justify-content: center;
+
+border-radius: 8px;
+max-width: 300px;
+}
+
+.single-date-container {
+display: flex;
+justify-content: space-between;
+
+margin-top: 48px;
+}
+
+.single-seller-container {
+display: flex;
+justify-content: space-between;
+}
+
+.single-description-container {
+
+background-color: #FAFAFA;
+padding: 12px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+.h6-title-style {
+
+margin-bottom: 0px;}
+
+/* ALL INFO FOR PRODUCT END */
+
+
+
+/* One listing end */
+
+
+
+
+
+
+
+.title-container {
+display: flex;
+flex-direction: column-reverse;
+padding: 12px;
+
+background-image: url("../images/hero_13232.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+
+width: 100%;
+height: 250px;
+margin-bottom: 24px;
+}
+
+.container-article {
+}
+
+.article {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+
+width: 250px;
+margin: 4px;
+border: 0px solid #DDDDDD;
+
+}
+
+.article:hover {
+-webkit-box-shadow: 4px 1px 13px 4px rgba(0,0,0,0.16);
+box-shadow: 4px 1px 13px 4px rgba(0,0,0,0.16);
+}
+
+.content-container {
+padding: 12px;
+}
+
+
+
+/* NAV STYLE */
+
+
+.container{
+    width: 100%;
+}
+
+.counter-box {
+	display: flex;
+	padding: 12px;
+	align-items: center;
+	justify-content: center;
+}
+
+.counter-box p {
+	margin: 5px 0 0;
+	padding: 0;
+	color: #909090;
+	font-size: 18px;
+	font-weight: 500
+}
+
+
+.counter {
+	display: block;
+	font-size: 32px;
+	font-weight: 700;
+	color: #666;
+	line-height: 28px
+}
+
+.counter-box.colored {
+      background: #003B29;
+}
+
+.counter-box.colored p,
+.counter-box.colored .counter {
+	color: #FEF880;
+}
+
+.text-color {
+color: #FEF880;
+padding-right: 24px;
+}
+
+.icon-style {
+color: #FEF880;
+font-size: 16px;
+margin-left: 8px;
+}
+.custom-style-primary {
+color: #2ca58d;
+}
+
+.text-style-bold {
+font-weight: 700;
+}
+
+
