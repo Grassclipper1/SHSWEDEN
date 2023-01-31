@@ -1,25 +1,38 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../../../favicon.ico">
+
+  <title>Startsida</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+          crossorigin="anonymous"></script>
+  <link href="../Css/album.css" rel="stylesheet">
+  <!-- Link startpage.css -->
+  <link rel="stylesheet" href="/static/css/profilePage.css" th:href="'/css/profilePage.css'">
+  <!-- Link javascript.js -->
+  <script type="text/javascript" th:src="@{/js/javascript.js}"></script>
+  <!-- Link google icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 </head>
-<body><link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<meta http-equiv="content-type" content="text/html" charset="ISO-8859-1" />
+<body>
+
 <!------ Include the above in your HEAD tag ---------->
-<meta charset="UTF-8">
 <section style="background-color: #eee;">
   <div class="container py-5">
     <div class="row">
       <div class="col">
-        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-          <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="#">Hem</a></li>
+        <nav aria-label="breadcrumb" class="rounded-3 mb-4">
+          <ol class="breadcrumb mb-0" style="background-color: #003B29;" >
+            <li class="breadcrumb-item yello" ><a href="#">Hem</a></li>
             <li class="breadcrumb-item"><a href="#">Användare</a></li>
             <li class="breadcrumb-item active" aria-current="page">Användarprofil</li>
           </ol>
@@ -37,8 +50,8 @@
             <p class="text-muted mb-1">Säljare</p>
             <p class="text-muted mb-4">Stockholm</p>
             <div class="d-flex justify-content-center mb-2">
-              <button type="button" class="btn btn-primary">Följ</button>
-              <button type="button" class="btn btn-outline-primary ms-1">Meddelande</button>
+              <button type="button" class="btn btn-warning">Följ</button>
+              <button type="button" class="btn btn-outline-warning ms-1">Meddelande</button>
             </div>
           </div>
         </div>
@@ -77,7 +90,8 @@
                 <p class="mb-0">Namn</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">Johan Smith</p>
+                <!--<input type="text" class="form-control" id="username" placeholder="Användarnamn" th:value="${user?.getUserName()}">-->
+                <p th:value="${user?.getUserName()}" class="text-muted mb-0"></p>
               </div>
             </div>
             <hr>
@@ -122,7 +136,7 @@
           <div class="col-md-6">
             <div class="card mb-4 mb-md-0">
               <div class="card-body">
-                <p class="mb-4"><span class="text-primary font-italic me-1">Söker efter</span>
+                <p class="mb-4"><span class="text-dark font-italic me-1">Söker efter</span>
                 </p>
                 <p class="mb-1" style="font-size: .77rem;">Skor</p>
                 <div class="progress rounded" style="height: 5px;">
@@ -155,7 +169,7 @@
           <div class="col-md-6">
             <div class="card mb-4 mb-md-0">
               <div class="card-body">
-                <p class="mb-4"><span class="text-primary font-italic me-1">Välgörenhetsorginisationer </span>
+                <p class="mb-4"><span class="text-dark font-italic me-1">Välgörenhetsorginisationer </span>
                 </p>
                 <p class="mb-1" style="font-size: .77rem;">Rädda barnen</p>
                 <div class="progress rounded" style="height: 5px;">
@@ -177,7 +191,6 @@
                   <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
                        aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                </div>
               </div>
             </div>
           </div>
@@ -185,4 +198,11 @@
       </div>
     </div>
   </div>
+  </div>
 </section>
+
+
+
+
+</body>
+</html>
