@@ -27,7 +27,7 @@
                     <ol class="breadcrumb mb-0" style="background-color: #003B29;">
                         <li class="breadcrumb-item yello"><a href="/createListing">Skapa annons</a></li>
                         <li class="breadcrumb-item"><a href="/logout">Logga ut</a></li>
-                        <td><a th:href="'/allListings?seller=' + ${seller}"><button type="button" class="btn btn-dark">My listings</button></a></td>
+                        <td><a th:href="'/allListings?seller=' + ${session.seller}"><button type="button" class="btn btn-dark">My listings</button></a></td>
                     </ol>
                 </nav>
             </div>
@@ -75,12 +75,12 @@
                         <div class="row">
                             <div class="col-sm-3"><p class="mb-0">Namn</p></div>
                             <div class="col-sm-9">
-                                <div><p th:text="${session.user?.getFirstName()}"></p></div>
+                                <div><p th:text="${session.user?.getFirstName() + ' ' + session.user?.getLastName()}"></p></div>
                         </div>
                         <hr>
                         <div class="row">
-                            <div class="col-sm-3"><p class="mb-0">Emailadress</p></div>
-                            <div class="col-sm-9"><p class="text-muted mb-0">example@example.com</p></div>
+                            <div class="col-sm-3"><p class="mb-0">E-post</p></div>
+                            <div class="col-sm-9"><p class="text-muted mb-0" th:text="${session.user?.getEmailAddress()}"> </p></div>
                         </div>
                         <hr>
                         <div class="row">
@@ -95,7 +95,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3"><p class="mb-0">Adress</p></div>
-                            <div class="col-sm-9"><p class="text-muted mb-0">Stockholm</p></div>
+                            <div class="col-sm-9"><p class="text-muted mb-0" th:text="${session.user?.getStreetAddress() + ' ' + session.user?.getZip()}"> </p></div>
                         </div>
                     </div>
                 </div>

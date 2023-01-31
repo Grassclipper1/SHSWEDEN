@@ -60,17 +60,19 @@ public class UserController {
 
         if(user != null && user.getPassword().equals(password)){
             session.setAttribute("userId", user.getId());
+            session.setAttribute("seller", user.getId());
             session.setAttribute("user", user);
             return "ProfilePage";
         }
         return "signin";
+        //return "redirect:/ProfilePage";
     }
 
 
-    @GetMapping("/ProfilePage")
+/*   @GetMapping("/ProfilePage")
     String ProfilePage() {
         return "ProfilePage";
-    }
+    }*/
 
     @GetMapping("/signup")
     String signup(Model model, HttpSession session) {
@@ -90,8 +92,9 @@ public class UserController {
         }
         User createdUser = userRepository.save(user);
         session.setAttribute("userId", createdUser.getId());
-        session.setAttribute("user",createdUser);
-        return "account";
+        session.setAttribute("seller", createdUser.getId());
+        session.setAttribute("user", createdUser);
+        return "ProfilePage";
     }
 
     @GetMapping("/CheckoutPage")
@@ -111,14 +114,15 @@ public class UserController {
     String logout(HttpSession session) {
         session.removeAttribute("userId");
         session.removeAttribute("user");
+        session.removeAttribute("seller");
         return "redirect:/";
     }
-    @GetMapping("/account")  //använder denna för att ha åtkomst till account för tester
-    String account(HttpSession session, Model model) {
+   @GetMapping("/ProfilePage")  //använder denna för att ha åtkomst till account för tester
+    String ProfilePage(HttpSession session, Model model) {
         Integer id = (Integer) session.getAttribute("userId");
         if (id != null) {
             model.addAttribute("seller", id);
-            return "account";
+            return "ProfilePage";
         } else
             session.removeAttribute("userId");
         return "redirect:/";
