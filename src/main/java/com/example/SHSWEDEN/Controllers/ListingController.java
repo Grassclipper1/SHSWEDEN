@@ -64,6 +64,7 @@ public class ListingController {
     public String listing1(HttpSession session, @RequestParam Integer id) {
         Listing listing = listingRepository.getById(id);
         session.setAttribute("listing", listing);
+        session.getAttribute("user");
         System.out.println(listing);
 
             return "CheckoutPage";
