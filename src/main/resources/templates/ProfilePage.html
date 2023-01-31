@@ -25,9 +25,9 @@
             <div class="col">
                 <nav aria-label="breadcrumb" class="rounded-3 mb-4">
                     <ol class="breadcrumb mb-0" style="background-color: #003B29;">
-                        <li class="breadcrumb-item yello"><a href="#">Hem</a></li>
-                        <li class="breadcrumb-item"><a href="#">Användare</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Användarprofil</li>
+                        <li class="breadcrumb-item yello"><a href="/createListing">Skapa annons</a></li>
+                        <li class="breadcrumb-item"><a href="/logout">Logga ut</a></li>
+                        <td><a th:href="'/allListings?seller=' + ${seller}"><button type="button" class="btn btn-dark">My listings</button></a></td>
                     </ol>
                 </nav>
             </div>
@@ -37,9 +37,9 @@
                 <div class="card mb-4">
                     <div class="card-body text-center"><img
                             src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                            alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">            <h5
-                            class="my-3">Johan Smith</h5>
-                        <p class="text-muted mb-1">Säljare</p>
+                            alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                        <div><p th:text="${session.user?.getFirstName()}"></p></div>
+                        <div><p th:text="${session.Listing?.getSeller()}"></p></div>
                         <p class="text-muted mb-4">Stockholm</p>
                         <div class="d-flex justify-content-center mb-2">
                             <button type="button" class="btn btn-warning">Följ</button>
@@ -75,8 +75,7 @@
                         <div class="row">
                             <div class="col-sm-3"><p class="mb-0">Namn</p></div>
                             <div class="col-sm-9">
-                                <!--<input type="text" class="form-control" id="username" placeholder="Användarnamn" th:value="${user?.getUserName()}">-->
-                                <p th:value="${user?.getUserName()}" class="text-muted mb-0"></p></div>
+                                <div><p th:text="${session.user?.getFirstName()}"></p></div>
                         </div>
                         <hr>
                         <div class="row">
