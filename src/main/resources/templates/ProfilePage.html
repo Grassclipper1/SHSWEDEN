@@ -38,7 +38,7 @@
                     <div class="card-body text-center"><img
                             src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                             alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                        <div><p th:text="${session.user?.getFirstName()}"></p></div>
+                        <div><p th:text="${session.user?.getUserName()}"></p></div>
                         <div><p th:text="${session.Listing?.getSeller()}"></p></div>
                         <p class="text-muted mb-4">Stockholm</p>
                         <div class="d-flex justify-content-center mb-2">
