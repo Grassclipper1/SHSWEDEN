@@ -55,7 +55,7 @@
                     <div class="image-container">
                         <td><img src="../images/product_shoes_1.jpg"></td>
                     </div>
-                        <th><a th:href="'/oneListing/' + ${currentPage} + '/' + ${listing.id}" th:text="${listing.title}"></a></th>
+                        <th><a th:href="'/oneListing' + '/' + ${listing.id}" th:text="${listing.title}"></a></th>
                         <th th:text="${listing.description}"></th>
                 </tr>
             </table>
@@ -73,21 +73,21 @@
 
 
 
-<div>
+<!--<div>-->
 
-        <span th:if="${showPrev}">
-            <a th:href="'/?page=' + ${currentPage-1}" th:text="Previous"></a>
-        </span>
+<!--        <span th:if="${showPrev}">-->
+<!--            <a th:href="'/?page=' + ${currentPage-1}" th:text="Previous"></a>-->
+<!--        </span>-->
 
-  <span th:each="page : ${pages}">
-            <span th:if="${currentPage == page}" th:text="${page}"></span>
-            <a th:if="${currentPage != page}" th:href="'/?page=' + ${page}" th:text="${page}"></a>
-        </span>
+<!--  <span th:each="page : ${pages}">-->
+<!--            <span th:if="${currentPage == page}" th:text="${page}"></span>-->
+<!--            <a th:if="${currentPage != page}" th:href="'/?page=' + ${page}" th:text="${page}"></a>-->
+<!--        </span>-->
 
-  <span th:if="${showNext}">
-            <a th:href="'/?page=' + ${currentPage+1}" th:text="Next"></a>
-        </span>
-</div>
+<!--  <span th:if="${showNext}">-->
+<!--            <a th:href="'/?page=' + ${currentPage+1}" th:text="Next"></a>-->
+<!--        </span>-->
+<!--</div>-->
 
 </body>
 </html>
