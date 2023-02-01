@@ -51,11 +51,16 @@
         </div>
 
         <div class="article-container">
-            <div class="article scrollmenu scrollbar">
+            <div class="article">
                 <div class="currentArticle" th:each="listing : ${listings}">
-                <div class="image-container"><img src="../images/product_shoes_1.jpg" width="200px"></div>
-                <h6><a th:href="'/oneListing/' + ${listing.id}" th:text="${listing.title}"></a></h6>
-                <p th:text="${listing.description}"></p>
+                <div class="image-container"><img src="../images/product_shoes_1.jpg" width="96px"></div>
+                    <div class="content-container-left">
+                        <h6><a th:href="'/oneListing/' + ${listing.id}" th:text="${listing.title}"></a></h6>
+                        <p th:text="${listing.description}"></p>
+                    </div>
+                    <div class="content-container-right">
+                        <h5 th:text="${listing.price} + ' kr'"></h5>
+                    </div>
                 </div>
             </div>
 
