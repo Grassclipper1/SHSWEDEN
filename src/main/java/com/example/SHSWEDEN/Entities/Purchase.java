@@ -21,6 +21,8 @@ public class Purchase {
 
     Integer donationSum;
 
+    public Purchase(){}
+
     public Purchase(String itemName, Integer sellerId, Integer buyerId, Integer price, Integer donationSum) {
         this.itemName = itemName;
         this.sellerId = sellerId;

@@ -198,10 +198,10 @@ public class UserController {
     }*/
 
     public int sumOfPriceSubDonation() {
-        List<Listing> listings = listingRepository.findAll();
+        List<Purchase> purchases = purchaseRepository.findAll();
         int totalDonation = 0;
-        for(Listing listing : listings) {
-            totalDonation += listing.getPrice() - (listing.getPrice() - ((listing.getDonationPercent() * listing.getPrice()) / 100));
+        for(Purchase purchase : purchases) {
+            totalDonation += purchase.getPrice() - (purchase.getPrice() - ((purchase.getDonationSum() * purchase.getPrice()) / 100));
         }
         /*System.out.println(totalDonation);*/
         return totalDonation;
