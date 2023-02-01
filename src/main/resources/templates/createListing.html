@@ -28,7 +28,10 @@
                     <ol class="breadcrumb mb-0" style="background-color: #003B29;">
                         <li class="breadcrumb-item"><a href="/createListing">Skapa annons</a></li>
                         <li class="breadcrumb-item"><a href="/logout">Logga ut</a></li>
-                        <a th:href="'/allListings?seller=' + ${session.seller}"><li class="breadcrumb-item" style="margin-left: 12px;"><a href="/logout">Mina annonser</a></li></a>
+                        <a th:href="'/allListings?seller=' + ${session.seller}">
+                            <li class="breadcrumb-item" style="margin-left: 12px;"><a href="/logout">Mina annonser</a>
+                            </li>
+                        </a>
                     </ol>
                 </nav>
             </div>
@@ -93,7 +96,8 @@
                             </div>
 
                             <div class="form-floating" style="padding: 8px">
-                                <input type="text" id="donationPercent" th:field="*{donationPercent}" class="form-control"
+                                <input type="text" id="donationPercent" th:field="*{donationPercent}"
+                                       class="form-control"
                                        placeholder="Fyll i beskrivning här"
                                        required>
                                 <label for="description" class="form-label">Donation i %</label>
@@ -102,36 +106,39 @@
                             </div>
 
                             <div class="form-floating" style="padding: 8px">
-                                <select th:object="${categories}" form="listingform" id="categories1" th:onchange="subCategory(1)" >
-                                    <option selected disabled hidden>Välj kategori: </option>
-                                    <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}" >
-                                    </option>
-                                </select>
-                            </div>
-
-                            <div class="form-floating" style="padding: 8px">
-                                <select th:object="${categories}" form="listingform" id="categories2" th:onchange="subCategory(2)" disabled>
-                                    <option selected disabled hidden></option>
+                                <select th:object="${categories}" form="listingform" id="categories1"
+                                        th:onchange="subCategory(1)">
+                                    <option selected disabled hidden>Välj kategori:</option>
                                     <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}">
                                     </option>
                                 </select>
                             </div>
 
                             <div class="form-floating" style="padding: 8px">
-                                <select th:object="${categories}" form="listingform" id="categories3" th:onchange="subCategory(3)" disabled>
+                                <select th:object="${categories}" form="listingform" id="categories2"
+                                        th:onchange="subCategory(2)" disabled>
                                     <option selected disabled hidden></option>
-                                    <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}">
-                                    </option>
                                 </select>
                             </div>
 
                             <div class="form-floating" style="padding: 8px">
-                                <select th:object="${categories}" form="listingform" id="categories4" th:onchange="subCategory(4)" disabled>
+                                <select th:object="${categories}" form="listingform" id="categories3"
+                                        th:onchange="subCategory(3)" disabled>
                                     <option selected disabled hidden></option>
-                                    <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}">
-                                    </option>
                                 </select>
                             </div>
+
+                            <div class="form-floating" style="padding: 8px">
+                                <select th:object="${categories}" form="listingform" id="categories4"
+                                        th:onchange="subCategory(4)" disabled>
+                                    <option selected disabled hidden></option>
+                                </select>
+                            </div>
+
+                            <select hidden th:field="*{category}" th:object="${listing}" form="listingform"
+                                    id="categoriesHidden">
+                                <option selected disabled hidden value="0"></option>
+                            </select>
 
                             <input type="hidden" th:field="*{id}">
                             <input type="hidden" th:field="*{seller}">
@@ -141,93 +148,8 @@
                 </div>
             </div>
         </div>
-    </div></section>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script  th:inline="javascript">
-function subCategory(level){
-   var categoryId = $('#categories'+level).val();
-    $.get("/createListing/" + categoryId, function(data){
-        var option = "";
-        $.each(data, function (key, value) {
-            option += "<option value = " + value.id + ">" + value.name +  "</option>";
-        });
-        $('#categories'+(level+1)).removeAttr('disabled');
-        $('#categories'+(level+1)).find('option').remove().end().append(option);
-        for(var i = level+2; i < 5; i++) {
-        $('#categories'+i).empty();
-        $('#categories'+i).attr('disabled', true);}
-    });
-}
-</script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<div><p th:text=" 'logged in as ' + ${session.user?.getFirstName()}"></p></div>
-<form th:object="${listing}" action="/createListing" method="POST" id="listingform">
-
-    <input type="hidden" th:field="*{id}">
-
-    <input type="hidden" th:field="*{seller}">
-    <input type="hidden" th:field="*{date}">
-
-    <label for="title">Title</label>
-    <input type="text" th:field="*{title}" id="title">
-
-    <label for="description">description</label>
-    <textarea th:field="*{description}" id="description"></textarea>
-
-    <label for="price">price</label>
-    <input type="text" th:field="*{price}" id="price">
-
-    <label for="shippingCost">shippingCost</label>
-    <input type="text" th:field="*{shippingCost}" id="shippingCost">
-
-    <label for="donationPercent">donationPercent</label>
-    <input type="text" th:field="*{donationPercent}" id="donationPercent">
-
-    <input type="submit">
-
-    <select th:object="${categories}" form="listingform" id="categories1" th:onchange="subCategory(1)">
-        <option selected disabled hidden>Välj kategori:</option>
-        <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}">
-        </option>
-    </select>
-
-    <select th:object="${categories}" form="listingform" id="categories2" th:onchange="subCategory(2)" disabled>
-        <option selected disabled hidden></option>
-    </select>
-
-    <select th:object="${categories}" form="listingform" id="categories3" th:onchange="subCategory(3)" disabled>
-        <option selected disabled hidden></option>
-    </select>
-
-    <select th:object="${categories}" form="listingform" id="categories4" th:onchange="subCategory(4)" disabled>
-        <option selected disabled hidden></option>
-    </select>
-
-    <select hidden th:field="*{category}" th:object="${listing}" form="listingform" id="categoriesHidden">
-        <option selected disabled hidden value="0"></option>
-    </select>
-
-</form>
+    </div>
+</section>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script th:inline="javascript">
@@ -255,7 +177,88 @@ function subCategory(level){
                 }
             });
         }
+
 </script>
 </body>
-
 </html>
+
+
+<!--&lt;!&ndash;<div><p th:text=" 'logged in as ' + ${session.user?.getFirstName()}"></p></div>-->
+<!--<form th:object="${listing}" action="/createListing" method="POST" id="listingform">-->
+
+<!--    <input type="hidden" th:field="*{id}">-->
+
+<!--    <input type="hidden" th:field="*{seller}">-->
+<!--    <input type="hidden" th:field="*{date}">-->
+
+<!--    <label for="title">Title</label>-->
+<!--    <input type="text" th:field="*{title}" id="title">-->
+
+<!--    <label for="description">description</label>-->
+<!--    <textarea th:field="*{description}" id="description"></textarea>-->
+
+<!--    <label for="price">price</label>-->
+<!--    <input type="text" th:field="*{price}" id="price">-->
+
+<!--    <label for="shippingCost">shippingCost</label>-->
+<!--    <input type="text" th:field="*{shippingCost}" id="shippingCost">-->
+
+<!--    <label for="donationPercent">donationPercent</label>-->
+<!--    <input type="text" th:field="*{donationPercent}" id="donationPercent">-->
+
+<!--    <input type="submit">-->
+
+<!--    <select th:object="${categories}" form="listingform" id="categories1" th:onchange="subCategory(1)">-->
+<!--        <option selected disabled hidden>Välj kategori:</option>-->
+<!--        <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}">-->
+<!--        </option>-->
+<!--    </select>-->
+
+<!--    <select th:object="${categories}" form="listingform" id="categories2" th:onchange="subCategory(2)" disabled>-->
+<!--        <option selected disabled hidden></option>-->
+<!--    </select>-->
+
+<!--    <select th:object="${categories}" form="listingform" id="categories3" th:onchange="subCategory(3)" disabled>-->
+<!--        <option selected disabled hidden></option>-->
+<!--    </select>-->
+
+<!--    <select th:object="${categories}" form="listingform" id="categories4" th:onchange="subCategory(4)" disabled>-->
+<!--        <option selected disabled hidden></option>-->
+<!--    </select>-->
+
+<!--    <select hidden th:field="*{category}" th:object="${listing}" form="listingform" id="categoriesHidden">-->
+<!--        <option selected disabled hidden value="0"></option>-->
+<!--    </select>-->
+
+<!--</form>-->
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+<!--<script th:inline="javascript">-->
+<!--        function subCategory(level) {-->
+<!--            var categoryId = $('#categories' + level).val();-->
+<!--            $.get("/createListing/" + categoryId, function (data) {-->
+<!--                var option = "<option selected='selected' disabled='disabled' value=''>Välj kategori</option>";-->
+<!--                var selection = "<option value = " + categoryId + "></option>";-->
+<!--                if (data.length == 0) {-->
+<!--                    for (var i = level + 1; i < 5; i++) {-->
+<!--                        $('#categories' + i).empty();-->
+<!--                        $('#categories' + i).attr({ disabled: true, required: false });-->
+<!--                    }-->
+<!--                    $('#categoriesHidden').find('option').remove().end().append(selection);-->
+<!--                } else {-->
+<!--                    $.each(data, function (key, value) {-->
+<!--                        option += "<option value = " + value.id + ">" + value.name + "</option>";-->
+<!--                    });-->
+<!--                    $('#categories' + (level + 1)).attr({ disabled: false, required: true });-->
+<!--                    $('#categories' + (level + 1)).find('option').remove().end().append(option);-->
+<!--                    for (var i = level + 2; i < 5; i++) {-->
+<!--                        $('#categories' + i).empty();-->
+<!--                        $('#categories' + i).attr({ disabled: true, required: false });-->
+<!--                    }-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
+<!--</script>-->
+<!--</body>-->
+
+<!--</html>-->
