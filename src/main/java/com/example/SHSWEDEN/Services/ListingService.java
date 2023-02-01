@@ -38,6 +38,8 @@ public class ListingService {
         return listingRepository.findAll();
     }
 
+    public List<Listing> findByUser (Integer userId){ return listingRepository.getListingBySeller(userId.toString());
+    }
 
     public List<Listing> createListingList(int seller, int category) {
         List<Listing> listings;

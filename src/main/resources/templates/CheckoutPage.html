@@ -237,12 +237,13 @@
                 </div>
               </div>
             </div>
-            <hr class="mb-4">
-            <a href="/logout" class="btn btn-secondary btn-lg btn-block">Fortsätt till betalningen</a>
           </form>
         </div>
       </div>
-
+      <form th:action="@{/CheckoutPage}" method="post">
+        <input name="id" type="hidden" id="buyListing" th:value="${listing?.getId()}"/>
+        <input class="btn btn-secondary btn-lg btn-block" type="submit" value="Fortsätt till betalningen"/>
+      </form>
       <footer class="my-5 pt-5 text-muted text-center text-small">
         <p class="mb-1">&copy; 2022-2023 Second Hand Sweden</p>
         <ul class="list-inline">

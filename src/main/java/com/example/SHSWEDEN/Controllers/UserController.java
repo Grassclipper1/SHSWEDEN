@@ -6,6 +6,7 @@ import com.example.SHSWEDEN.Entities.User;
 import com.example.SHSWEDEN.Repos.CategoryRepository;
 import com.example.SHSWEDEN.Repos.ListingRepository;
 import com.example.SHSWEDEN.Repos.UserRepository;
+import com.example.SHSWEDEN.Services.ListingService;
 import com.example.SHSWEDEN.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,9 @@ public class UserController {
     ListingRepository listingRepository;
 
     @Autowired
+    ListingService listingService;
+
+    @Autowired
     private UserRepository userRepository;
     @Autowired
     CategoryRepository categoryRepository;
@@ -55,13 +59,17 @@ public class UserController {
     }
 
     @PostMapping("/signin")
-    String login(HttpSession session, @RequestParam String emailAddress, @RequestParam String password) {
+    String login(HttpSession session, Model model, @RequestParam String emailAddress, @RequestParam String password) {
         User user = userService.findByEmailAddressAndPassword(emailAddress, password);
 
         if(user != null && user.getPassword().equals(password)){
             session.setAttribute("userId", user.getId());
             session.setAttribute("seller", user.getId());
             session.setAttribute("user", user);
+
+            List<Listing> listings = listingService.findByUser(user.getId());
+            model.addAttribute("listings", listings);
+
             return "ProfilePage";
         }
         return "signin";
@@ -104,12 +112,28 @@ public class UserController {
         User user = userService.findById(userId);
         model.addAttribute("user", user);
         session.getAttribute("listing");
+        Listing listing = (Listing) session.getAttribute("listing");
+        model.addAttribute(listing);
         return "CheckoutPage";
         }
         else
             session.removeAttribute("userId");
         return "redirect:/";
     }
+
+    @PostMapping ("/CheckoutPage")
+    String checkoutPost(HttpSession session, Model model){
+        Listing listing = (Listing) session.getAttribute("listing");
+        if (listing != null){
+            System.out.println("success");
+            listingRepository.delete(listing);
+            return "redirect:/";
+        }else
+            System.out.println("fail");
+            return "CheckoutPage";
+    }
+
+
 
     @GetMapping("/logout")
     String logout(HttpSession session) {
@@ -121,8 +145,13 @@ public class UserController {
    @GetMapping("/ProfilePage")  //använder denna för att ha åtkomst till account för tester
     String ProfilePage(HttpSession session, Model model) {
         Integer id = (Integer) session.getAttribute("userId");
+
         if (id != null) {
+
+            List<Listing> listings = listingService.findByUser(id);
+            model.addAttribute("listings", listings);
             model.addAttribute("seller", id);
+
             return "ProfilePage";
         } else
             session.removeAttribute("userId");
