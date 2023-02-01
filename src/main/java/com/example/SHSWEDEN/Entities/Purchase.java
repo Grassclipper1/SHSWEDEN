@@ -19,7 +19,7 @@ public class Purchase {
 
     Integer price;
 
-    Integer donationSum;
+    Long donationSum;
 
     public Purchase(){}
 
@@ -28,7 +28,7 @@ public class Purchase {
         this.sellerId = sellerId;
         this.buyerId = buyerId;
         this.price = price;
-        this.donationSum = donationSum;
+        this.donationSum = Long.valueOf(donationSum);
     }
 
     public Integer getId() {
@@ -71,11 +71,11 @@ public class Purchase {
         this.price = price;
     }
 
-    public Integer getDonationSum() {
+    public Long getDonationSum() {
         return donationSum;
     }
 
-    public void setDonationSum(Integer donationSum) {
+    public void setDonationSum(Long donationSum) {
         this.donationSum = donationSum;
     }
 }
