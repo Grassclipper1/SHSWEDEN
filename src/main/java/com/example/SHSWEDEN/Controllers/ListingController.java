@@ -1,11 +1,13 @@
 package com.example.SHSWEDEN.Controllers;
 
 
+import com.example.SHSWEDEN.Entities.Category;
 import com.example.SHSWEDEN.Entities.Listing;
 import com.example.SHSWEDEN.Entities.User;
 import com.example.SHSWEDEN.Models.ListingObj;
 import com.example.SHSWEDEN.Repos.ListingRepository;
 import com.example.SHSWEDEN.Repos.UserRepository;
+import com.example.SHSWEDEN.Services.CategoryService;
 import com.example.SHSWEDEN.Services.ListingService;
 import com.example.SHSWEDEN.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -26,14 +31,21 @@ public class ListingController {
     private ListingService listingService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private CategoryService categoryService;
+    @Autowired
+    ListingRepository listingRepository;
 
     @GetMapping("/allListings")
-    public String listings(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
+    public String listings(Model model, @RequestParam(value = "seller", required = false, defaultValue = "0")
+    int seller, @RequestParam(value = "category", required = false, defaultValue = "0")
+    int category, @RequestParam(value="page", required=false, defaultValue="1") int page){
 
-        List<Listing> listings = getPage(page-1, PAGE_SIZE);
+
+        List<Listing> listings = listingService.createListingList(seller, category);
+
         int pageCount = numberOfPages(PAGE_SIZE);
         int[] pages = toArray(pageCount);
-
         model.addAttribute("listings", listings);
         model.addAttribute("pages", pages);
         model.addAttribute("currentPage", page);
@@ -58,15 +70,24 @@ public class ListingController {
     String createListing(HttpSession session, Model model) {
         Integer id = (Integer) session.getAttribute("userId");
 
+        List<Category> categories = categoryService.findByParentId(0);
+        model.addAttribute("categories", categories);
+
         if (id != null) {
             Listing listing = new Listing();
             listing.setSeller(id);
-            listing.setDate(String.valueOf(new Date()));
+            listing.setDate(String.valueOf(LocalDate.now()));
             model.addAttribute("listing", listing);
             return "createListing";
         } else
             session.removeAttribute("userId");
         return "redirect:/allListings";
+    }
+
+
+    @RequestMapping(value = "/createListing/{parentId}", method = RequestMethod.GET)
+    public @ResponseBody List<Category> subCategories(@PathVariable("parentId") Integer parentId){
+        return this.categoryService.findByParentId(parentId);
     }
 
 

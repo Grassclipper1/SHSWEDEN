@@ -18,7 +18,7 @@ public class Listing {
     @Column(name = "Title", nullable = false, length = 50)
     private String title;
 
-    @Size(max = 50)
+    @Size(max = 500)
     @NotNull
     @Column(name = "Description", nullable = false, length = 50)
     private String description;

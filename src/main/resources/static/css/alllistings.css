@@ -1,0 +1,137 @@
+* {
+box-sizing: border-box!important;
+}
+
+body {
+margin: auto;
+}
+
+.container-listing {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+
+margin-top: 40px;
+}
+
+table{
+display: flex;
+}
+
+
+tbody{
+    display: flex;
+    width: 100%;
+}
+
+td {
+width: 100%;
+display: flex;
+justify-content: center;
+}
+
+td, img {
+width: 100%;
+}
+
+.title-container {
+display: flex;
+flex-direction: column-reverse;
+padding: 12px;
+
+background-image: url("../images/hero_13232.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+
+width: 100%;
+height: 400px;
+margin-bottom: 24px;
+}
+
+.container-article {
+}
+
+.article {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+
+width: 250px;
+margin: 4px;
+border: 0px solid #DDDDDD;
+
+}
+
+.article:hover {
+-webkit-box-shadow: 4px 1px 13px 4px rgba(0,0,0,0.16);
+box-shadow: 4px 1px 13px 4px rgba(0,0,0,0.16);
+}
+
+.content-container {
+padding: 12px;
+}
+
+
+
+/* NAV STYLE */
+
+
+.container{
+    width: 100%;
+}
+
+.counter-box {
+	display: flex;
+	padding: 12px;
+	align-items: center;
+	justify-content: center;
+}
+
+.counter-box p {
+	margin: 5px 0 0;
+	padding: 0;
+	color: #909090;
+	font-size: 18px;
+	font-weight: 500
+}
+
+
+.counter {
+	display: block;
+	font-size: 32px;
+	font-weight: 700;
+	color: #666;
+	line-height: 28px
+}
+
+.counter-box.colored {
+      background: #003B29;
+}
+
+.counter-box.colored p,
+.counter-box.colored .counter {
+	color: #FEF880;
+}
+
+.text-color {
+color: #FEF880;
+padding-right: 24px;
+}
+
+.icon-style {
+color: #FEF880;
+font-size: 16px;
+margin-left: 8px;
+}
+.custom-style-primary {
+color: #2ca58d;
+}
+
+.text-style-bold {
+font-weight: 700;
+}
+
+

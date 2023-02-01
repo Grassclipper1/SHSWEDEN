@@ -15,40 +15,61 @@
           integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
           crossorigin="anonymous"></script>
   <link href="../Css/album.css" rel="stylesheet">
+  <!-- Link startpage.css -->
+  <link rel="stylesheet" href="/static/css/startpage.css" th:href="'/css/startpage.css'">
+  <!-- Link javascript.js -->
+  <script type="text/javascript" th:src="@{/js/javascript.js}"></script>
+  <!-- Link google icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 </head>
 
 <body>
 
 <!-- NAVBAR START -->
 <div class="container">
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid"> <a class="navbar-brand name" href="#">Secondhandsweden.com</a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+  <nav class="navbar navbar-expand-lg navbar-light p-2">
+
+      <div class="container-fluid"> <img src="../images/secondcircle_logo.png" class="img-fluid rounded" alt="..." style="width: 135px; height: 50x;"> <a class="navbar-brand name" href="/startpage.html"></a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item"> <a class="nav-link active" aria-current="page" href="#">Om oss</a> </li>
           <li class="nav-item"> <a class="nav-link" href="#">Kategorier</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="#">Blogg</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="/blog">Blogg</a> </li>
           <li class="nav-item"> <a class="nav-link" href="#">Kontakt</a> </li>
         </ul>
-        <a href="/signin" class="btn btn-secondary my-2">Logga in</a>
-        <a href="/signup" class="btn btn-secondary my-2">Skapa användare</a>
+        <a href="/signin"><button type="button" class="btn btn-warning btn-sm">Logga in</button></a>
+        <a href="/signup"><button type="button " class="btn btn-link btn-sm">Skapa användare</button></a>
       </div>
     </div>
   </nav>
 </div>
 <!-- NAVBAR END -->
 
-
 <!-- HERO SECTION START -->
-<main role="main">
+<main role="main w-100 p-3">
+
+
   <section class="text-center">
-    <div class="container">
+    <div class="container w-100 p-3">
+      <!-- DONATIONS SECTION START -->
+      <div class="container album py-3">
+        <div class="row">
+          <div class="four col-">
+            <div class="counter-box colored rounded">
+              <p class="text-color">Tillsammans har våra köpare och säljare samlat in&nbsp;</p>
+              <p th:text="' ' + ${sumOfDonations} + ' ' + ' kronor' " class="counter text-color"></p>
+              <i class="material-icons icon-style">favorite</i>
+            </div>
+          </div>
+        </div>
+        <!-- DONATIONS SECTION END -->
       <div class="carousel-inner" >
         <div class="carousel-item active">
-          <img src="../images/hero_1.jpg" class="img-fluid rounded" alt="..." style="width: 100%;margin-top: 40px; margin-bottom: 75px; max-height: 500px;">
+          <img src="../images/hero_bg21.png" class="img-fluid rounded" alt="..." style="width: 100%;margin-top: 20px; margin-bottom: 40px;">
           <!-- <img src="../images/garagesaleport.png" class="img-fluid rounded" alt="..." style="width: 80%;margin-top: 75px;"> -->
-          <div class="carousel-caption d-none d-md-block" style="bottom: 10rem;;">
-            <h1 class="jumbotron-heading text-light"><b>Välkommen till Second hand Sweden</b></h1>
+          <div class="carousel-caption d-none d-md-block" style="bottom: 20rem;">
+            <h1 class="jumbotron-heading text-light text-style-bold">Välkommen till Second Circle</h1>
             <!--<p class="lead text-light"><b>Vem styr världen?
             - Ingen. Men vi kan göra världen en bättre plats med välgörenhet. Vi på Second Hand Sweden brinner för välgörenhet och återvinning, därför går 2% av alla köp till en valfri organisation</b></p> -->
             <form class="d-flex searchitem"> <input class="form-control me-2" type="search" placeholder="Vad letar du efter?" aria-label="Search"> <i class="fa fa-search"></i> </form>
@@ -56,8 +77,10 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
   <!-- HERO SECTION END -->
+
 
   <!-- CATEGORY SECTION START -->
   <div class="container">
@@ -66,66 +89,66 @@
     <div class="row mt-2 g-4" style="margin-bottom: 75px;">
       <div class="col-md-3">
         <div class="card p-1">
-          <div class="d-flex justify-content-between align-items-center p-2">
+          <a href="/allListings?category=1"><div class="d-flex justify-content-between align-items-center p-2">
             <div class="flex-column lh-1 imagename"> <span>Mobiltelefoner</span> </div>
-            <div> <img src="https://i.imgur.com/b9zkoz0.jpg" height="110" width="100" /> </div>
-          </div>
-        </div>
+            <div> <img src="https://i.imgur.com/b9zkoz0.jpg" height="110" width="100" /></div>
+          </div></a>
+    </div>
       </div>
       <div class="col-md-3">
         <div class="card p-2">
-          <div class="d-flex justify-content-between align-items-center p-2">
+          <a href="/allListings?category=2"> <div class="d-flex justify-content-between align-items-center p-2">
             <div class="flex-column lh-1 imagename"> <span>Hörlurar</span> </div>
-            <div> <img src="https://i.imgur.com/SHWASPG.png" height="100" width="100" /> </div>
-          </div>
-        </div>
+            <div><img src="https://i.imgur.com/SHWASPG.png" height="100" width="100" /></div>
+          </div></a>
+    </div>
       </div>
       <div class="col-md-3">
         <div class="card p-2">
-          <div class="d-flex justify-content-between align-items-center p-2">
+          <a href="/allListings?category=3"><div class="d-flex justify-content-between align-items-center p-2">
             <div class="flex-column lh-1 imagename"> <span>Smartklockor</span> </div>
             <div> <img src=" https://i.imgur.com/Ya0OXCv.png" height="100" width="100" /> </div>
-          </div>
+          </div></a>
         </div>
       </div>
       <div class="col-md-3">
         <div class="card p-2">
-          <div class="d-flex justify-content-between align-items-center p-2">
+          <a href="/allListings?category=4"> <div class="d-flex justify-content-between align-items-center p-2">
             <div class="flex-column lh-1 imagename"> <span>Luftrengörare</span> </div>
             <div> <img src="https://i.imgur.com/2gvGwbh.png" height="100" width="100" /> </div>
-          </div>
+          </div> </a>
         </div>
       </div>
       <div class="col-md-3">
         <div class="card p-2tr5">
-          <div class="d-flex justify-content-between align-items-center p-2">
+          <a href="/allListings?category=5"><div class="d-flex justify-content-between align-items-center p-2">
             <div class="flex-column lh-1 imagename"> <span>Dammsugare</span> </div>
             <div> <img src="https://i.imgur.com/UMQJpSG.png" height="115" width="100" /> </div>
-          </div>
+          </div> </a>
         </div>
       </div>
       <div class="col-md-3">
         <div class="card p-2">
-          <div class="d-flex justify-content-between align-items-center p-2">
+          <a href="/allListings?category=6"><div class="d-flex justify-content-between align-items-center p-2">
             <div class="flex-column lh-1 imagename"> <span>Diskmaskin</span> </div>
             <div> <img src="https://i.imgur.com/e9CyhXR.png" height="100" width="100" /> </div>
-          </div>
+          </div> </a>
         </div>
       </div>
       <div class="col-md-3">
         <div class="card p-2">
-          <div class="d-flex justify-content-between align-items-center p-2">
+          <a href="/allListings?category=7"> <div class="d-flex justify-content-between align-items-center p-2">
             <div class="flex-column lh-1 imagename"> <span>Smart -</span> <span>TV</span> </div>
             <div> <img src=" https://i.imgur.com/Zq8VigZ.png" height="100" width="100" /> </div>
-          </div>
+          </div></a>
         </div>
       </div>
       <div class="col-md-3">
         <div class="card p-2">
-          <div class="d-flex justify-content-between align-items-center p-2">
+          <a href="/allListings?category=8"><div class="d-flex justify-content-between align-items-center p-2">
             <div class="flex-column lh-1 imagename"> <span>Bärbara datorer</span> </div>
             <div> <img src="https://i.imgur.com/6pK5oZl.jpg" height="100" width="100" /> </div>
-          </div>
+          </div></a>
         </div>
       </div>
     </div>
@@ -135,7 +158,7 @@
 
   <!-- ORGANISATION SECTION START -->
 
-  <div class="album py-5 bg-light">
+  <div class="album py-5">
 
     <div class="container">
       <h4>Organisationer</h4>
@@ -147,9 +170,9 @@
               <p class="card-text">Tack vare din och andras vilja att hjälpa till kan vi fortsätta vårt livsviktiga arbete för barnen. Din gåva ger barn på flykt mat, varma kläder och trygga platser att leka på. Tillsammans förändrar vi barns verklighet!</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-primary">Läs mer</button>
+                  <button type="button" class="btn btn-sm btn-warning">Läs mer</button>
                 </div>
-                <small class="text-muted">2 min</small>
+                <small class="text-muted"></small>
               </div>
             </div>
           </div>
@@ -162,9 +185,9 @@
               <p class="card-text">Tack vare din och andras vilja att hjälpa kan vi vara på plats i Sverige och 191 länder till världen över för att rädda liv och ge hopp.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-primary">Läs mer</button>
+                  <button type="button" class="btn btn-sm btn-warning">Läs mer</button>
                 </div>
-                <small class="text-muted">3 min</small>
+                <small class="text-muted"></small>
               </div>
             </div>
           </div>
@@ -177,9 +200,9 @@
               <p class="card-text">Att ge en minnesgåva är ett fint sätt att hedra minnet av någon som stått dig nära. Minnesgåvan hjälper forskningen mot nya genombrott. Den finns kvar och gör skillnad när blommor och kransar blommat ut.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-primary">Läs mer</button>
+                  <button type="button" class="btn btn-sm btn-warning">Läs mer</button>
                 </div>
-                <small class="text-muted">9 min </small>
+                <small class="text-muted"></small>
               </div>
             </div>
           </div>
@@ -192,9 +215,9 @@
               <p class="card-text">Din gåva är livsviktig och för forskningen framåt så att färre drabbas och fler överlever cancer.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-primary">Läs mer</button>
+                  <button type="button" class="btn btn-sm btn-warning">Läs mer</button>
                 </div>
-                <small class="text-muted">4 min</small>
+                <small class="text-muted"></small>
               </div>
             </div>
           </div>
@@ -207,9 +230,9 @@
               <p class="card-text">Vi finns på plats världen över och kan snabbt hjälpa barnen i katastrofsituationer. Ge en gåva till katastrofarbetet.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-primary">Läs mer</button>
+                  <button type="button" class="btn btn-sm btn-warning">Läs mer</button>
                 </div>
-                <small class="text-muted">9 min</small>
+                <small class="text-muted"></small>
               </div>
             </div>
           </div>
@@ -222,9 +245,9 @@
               <p class="card-text">Skänk en gåva, bli månadsgivare eller starta en insamling. Tillsammans räddar vi liv. Stöd vårt arbete. Tillsammans räddar vi liv. Engagera dig. Vi ger humanitär hjälp.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-primary">Läs mer</button>
+                  <button type="button" class="btn btn-sm btn-warning">Läs mer</button>
                 </div>
-                <small class="text-muted">6 min</small>
+                <small class="text-muted"></small>
               </div>
             </div>
           </div>
@@ -237,9 +260,9 @@
               <p class="card-text">Mitt i kriser finns barnen och drabbas. SOS Barnbyar finns på plats innan, under och efter att behovet är ett faktum. Vår närvaro och samarbete med lokala myndigheter i närmre 140 länder runt om i världen gör att vi snabbt kan samordna riktade insatser för att ge stöd åt barn och familjer.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-primary">Läs mer</button>
+                  <button type="button" class="btn btn-sm btn-warning">Läs mer</button>
                 </div>
-                <small class="text-muted">7 min</small>
+                <small class="text-muted"></small>
               </div>
             </div>
           </div>
@@ -252,9 +275,9 @@
               <p class="card-text">Hjälp djur, natur och klimatet. Bli fadder & gör skillnad för vår enda planet. Är du med? Bestånden av vilda djur har minskat med 69% sedan 1970. Läs mer & gör skillnad! Gåvobevis att ge bort. Skänk enkelt med Swish. Stoppa utrotningen.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-primary">Läs mer</button>
+                  <button type="button" class="btn btn-sm btn-warning">Läs mer</button>
                 </div>
-                <small class="text-muted">1 min</small>
+                <small class="text-muted"></small>
               </div>
             </div>
           </div>
@@ -267,9 +290,9 @@
               <p class="card-text">Hjälp Sverige för UNHCR ge livräddande hjälp till människor på flykt världen över. Rädda liv genom att bli månadsgivare idag! Ditt bidrag räddar liv. UNHCR bidrar med nödhjälp. 90-konto. Hjälp människor på flykt. På plats världen över.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-primary">Läs mer</button>
+                  <button type="button" class="btn btn-sm btn-warning">Läs mer</button>
                 </div>
-                <small class="text-muted">8 min</small>
+                <small class="text-muted"></small>
               </div>
             </div>
           </div>
@@ -284,7 +307,7 @@
 <!-- FOOTER START -->
 
 <!-- Footer -->
-<footer class="text-center text-lg-start bg-white text-muted">
+<footer class="text-center text-lg-start bg-white text-muted" style="background-color: #003B29;">
   <!-- Section: Social media -->
   <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
     <!-- Left -->
@@ -327,11 +350,11 @@
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
           <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3 text-secondary"></i>Second hand Sweden
+            <i class="fas fa-gem me-3 text-secondary"></i>Second Circle
           </h6>
           <p>
             Vem styr världen?
-            - Ingen. Men vi kan göra världen en bättre plats med välgörenhet. Vi på Second Hand Sweden brinner för välgörenhet och återvinning, därför går 2% av alla köp till en valfri organisation
+            - Ingen. Men vi kan göra världen en bättre plats med välgörenhet. Vi på Second Circle brinner för välgörenhet och återvinning, därför går 2% av alla köp till en valfri organisation
           </p>
         </div>
         <!-- Grid column -->
@@ -385,7 +408,7 @@
           <p><i class="fas fa-home me-3 text-secondary"></i> Stockholm, 211 76, SWE</p>
           <p>
             <i class="fas fa-envelope me-3 text-secondary"></i>
-            grupp4@Secondhandsweden.com
+            grupp4@SecondCircle.com
           </p>
           <p><i class="fas fa-phone me-3 text-secondary"></i> + 46 40 532</p>
           <p><i class="fas fa-print me-3 text-secondary"></i> + 46 45 531</p>
@@ -398,9 +421,9 @@
   <!-- Section: Links  -->
 
   <!-- Copyright -->
-  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+  <div class="text-center p-4 copyright-section text-color" style="background-color: #003B29;">
     © 2023 Copyright:
-    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">SwedishSecondHand</a>
+    <a class="text-reset fw-bold text-color" href="https://mdbootstrap.com/">SwedishSecondHand</a>
   </div>
   <!-- Copyright -->
 </footer>
