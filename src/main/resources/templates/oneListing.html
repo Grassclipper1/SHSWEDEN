@@ -95,8 +95,10 @@
                 </div>
 
                 </table>
-
-                <a href="/CheckoutPage" class="btn btn-warning btn-lg btn-block button-style">Lägg till varukorg</a>
+                <form th:action="@{/oneListing}" method="post">
+                    <input name="id" type="hidden" id="buyListing" th:value="${listing?.getId()}"/>
+                <input class="btn btn-warning btn-lg btn-block button-stylek" type="submit" value="Lägg till varukorg"/>
+                     </form>
             </div>
         </div>
 
