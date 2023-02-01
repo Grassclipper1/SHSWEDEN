@@ -111,7 +111,7 @@ public class UserController {
 
     @GetMapping("/CheckoutPage")
     String checkout(HttpSession session, Model model) {
-        Integer userId = (Integer) session.getAttribute("userId");
+        Integer userId = (Integer) session.getAttribute("listing");
         if (userId != null){
         User user = userService.findById(userId);
         model.addAttribute("user", user);
@@ -121,7 +121,7 @@ public class UserController {
         return "CheckoutPage";
         }
         else
-            session.removeAttribute("userId");
+            session.removeAttribute("listing");
         return "redirect:/";
     }
 
@@ -134,6 +134,7 @@ public class UserController {
             Purchase purchase = new Purchase(listing.getTitle(), listing.getSeller(), user.getId(), listing.getPrice(), listing.getDonationPercent());
             purchaseRepository.save(purchase);
             listingRepository.delete(listing);
+            session.removeAttribute("listing");
             return "redirect:/";
         }else
             System.out.println("fail");
