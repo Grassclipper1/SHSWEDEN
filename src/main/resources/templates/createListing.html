@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -196,54 +197,65 @@ function subCategory(level){
     <label for="price">price</label>
     <input type="text" th:field="*{price}" id="price">
 
-
     <label for="shippingCost">shippingCost</label>
     <input type="text" th:field="*{shippingCost}" id="shippingCost">
 
     <label for="donationPercent">donationPercent</label>
     <input type="text" th:field="*{donationPercent}" id="donationPercent">
 
-
     <input type="submit">
 
-    <select th:object="${categories}" form="listingform" id="categories1" th:onchange="subCategory(1)" >
-        <option selected disabled hidden>Välj kategori: </option>
-        <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}" >
+    <select th:object="${categories}" form="listingform" id="categories1" th:onchange="subCategory(1)">
+        <option selected disabled hidden>Välj kategori:</option>
+        <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}">
         </option>
     </select>
+
     <select th:object="${categories}" form="listingform" id="categories2" th:onchange="subCategory(2)" disabled>
         <option selected disabled hidden></option>
-        <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}">
-        </option>
     </select>
+
     <select th:object="${categories}" form="listingform" id="categories3" th:onchange="subCategory(3)" disabled>
         <option selected disabled hidden></option>
-        <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}">
-        </option>
     </select>
+
     <select th:object="${categories}" form="listingform" id="categories4" th:onchange="subCategory(4)" disabled>
         <option selected disabled hidden></option>
-        <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}">
-        </option>
     </select>
-</form>-->
 
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script  th:inline="javascript">
-function subCategory(level){
-   var categoryId = $('#categories'+level).val();
-    $.get("/createListing/" + categoryId, function(data){
-        var option = "";
-        $.each(data, function (key, value) {
-            option += "<option value = " + value.id + ">" + value.name +  "</option>";
-        });
-        $('#categories'+(level+1)).removeAttr('disabled');
-        $('#categories'+(level+1)).find('option').remove().end().append(option);
-        for(var i = level+2; i < 5; i++) {
-        $('#categories'+i).empty();
-        $('#categories'+i).attr('disabled', true);}
-    });
-}
-</script>-->
+    <select hidden th:field="*{category}" th:object="${listing}" form="listingform" id="categoriesHidden">
+        <option selected disabled hidden value="0"></option>
+    </select>
+
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script th:inline="javascript">
+        function subCategory(level) {
+            var categoryId = $('#categories' + level).val();
+            $.get("/createListing/" + categoryId, function (data) {
+                var option = "<option selected='selected' disabled='disabled' value=''>Välj kategori</option>";
+                var selection = "<option value = " + categoryId + "></option>";
+                if (data.length == 0) {
+                    for (var i = level + 1; i < 5; i++) {
+                        $('#categories' + i).empty();
+                        $('#categories' + i).attr({ disabled: true, required: false });
+                    }
+                    $('#categoriesHidden').find('option').remove().end().append(selection);
+                } else {
+                    $.each(data, function (key, value) {
+                        option += "<option value = " + value.id + ">" + value.name + "</option>";
+                    });
+                    $('#categories' + (level + 1)).attr({ disabled: false, required: true });
+                    $('#categories' + (level + 1)).find('option').remove().end().append(option);
+                    for (var i = level + 2; i < 5; i++) {
+                        $('#categories' + i).empty();
+                        $('#categories' + i).attr({ disabled: true, required: false });
+                    }
+                }
+            });
+        }
+</script>
 </body>
+
 </html>

@@ -41,6 +41,10 @@ public class ListingService {
     public List<Listing> findByUser (Integer userId){ return listingRepository.getListingBySeller(userId.toString());
     }
 
+    public List<Listing> getByKeyword(String keyword){
+        return listingRepository.findByKeyword(keyword);
+    }
+
     public List<Listing> createListingList(int seller, int category) {
         List<Listing> listings;
         if(seller != 0) {

@@ -11,6 +11,7 @@ import com.example.SHSWEDEN.Services.CategoryService;
 import com.example.SHSWEDEN.Services.ListingService;
 import com.example.SHSWEDEN.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,6 +36,8 @@ public class ListingController {
     private CategoryService categoryService;
     @Autowired
     ListingRepository listingRepository;
+
+
 
     @GetMapping("/allListings")
     public String listings(Model model, @RequestParam(value = "seller", required = false, defaultValue = "0")
@@ -62,6 +65,14 @@ public class ListingController {
         return "CheckoutPage";
     }
 
+
+    @GetMapping("/categories")
+    public String categories(Model model) {
+        List<Category> categories = categoryService.findByParentId(0);
+        model.addAttribute("categories", categories);
+        return "categories";
+    }
+
     @GetMapping("/createListing")
     String createListing(HttpSession session, Model model) {
         Integer id = (Integer) session.getAttribute("userId");
@@ -81,6 +92,13 @@ public class ListingController {
     public @ResponseBody List<Category> subCategories(@PathVariable("parentId") Integer parentId){
         return this.categoryService.findByParentId(parentId);
     }
+
+    @RequestMapping(value = "/categories/{parentId}", method = RequestMethod.GET)
+    public @ResponseBody List<Category> Categories(@PathVariable("parentId") Integer parentId){
+        return this.categoryService.findByParentId(parentId);
+    }
+
+
     @PostMapping("/createListing")
     String addedListing(@Valid Listing listing, HttpSession session, Model model, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
@@ -90,6 +108,36 @@ public class ListingController {
         listingService.save(listing);
         return "redirect:/allListings";
     }
+    @GetMapping("/search")
+    public String searchResult(Listing listing, Model model, @RequestParam("keyword") String keyword) {
+        List<Listing> searchResult = listingService.getByKeyword(keyword);
+        for (Listing l : searchResult) {
+            System.out.println(l.getDescription());
+        }
+        model.addAttribute("searchResult", searchResult);
+        model.addAttribute("keyword", keyword);
+        return "search";
+    }
 
+
+
+    private int[] toArray(int num) {
+        int[] result = new int[num];
+        for (int i = 0; i < num; i++) {
+            result[i] = i+1;
+        }
+        return result;
+    }
+    private List<Listing> getPage(int page, int pageSize) {
+        List<Listing> listings = (List<Listing>) listingService.findAll();
+        int from = Math.max(0,page*pageSize);
+        int to = Math.min(listings.size(),(page+1)*pageSize);
+
+        return listings.subList(from, to);
+    }
+    private int numberOfPages(int pageSize) {
+        List<Listing> listings = (List<Listing>) listingService.findAll();
+        return (int)Math.ceil((listings.size()) / pageSize);
+    }
 
 }
