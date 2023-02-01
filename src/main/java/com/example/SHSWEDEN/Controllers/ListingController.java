@@ -40,48 +40,33 @@ public class ListingController {
     public String listings(Model model, @RequestParam(value = "seller", required = false, defaultValue = "0")
     int seller, @RequestParam(value = "category", required = false, defaultValue = "0")
     int category){
-
         List<Listing> listings = listingService.createListingList(seller, category);
-
-
         model.addAttribute("listings", listings);
-
         return "allListings";
     }
 
     @GetMapping("/oneListing/{id}")
     public String listing(Model model,  @PathVariable Integer id, HttpSession session) {
         ListingObj listingObj = listingService.getListing(id);
-
         model.addAttribute("listing", listingObj.getListing());
         model.addAttribute("seller", listingObj.getSeller());
-
-
         return "oneListing";
     }
 
     @PostMapping("/oneListing")
-    public String listing1(HttpSession session, @RequestParam Integer id) {
+    public String listingPost(HttpSession session, @RequestParam Integer id) {
         Listing listing = listingRepository.getById(id);
         session.setAttribute("listing", listing);
         session.getAttribute("user");
         System.out.println(listing);
-
-            return "CheckoutPage";
+        return "CheckoutPage";
     }
-
-
-
-
-
 
     @GetMapping("/createListing")
     String createListing(HttpSession session, Model model) {
         Integer id = (Integer) session.getAttribute("userId");
-
         List<Category> categories = categoryService.findByParentId(0);
         model.addAttribute("categories", categories);
-
         if (id != null) {
             Listing listing = new Listing();
             listing.setSeller(id);
@@ -92,27 +77,19 @@ public class ListingController {
             session.removeAttribute("userId");
         return "redirect:/allListings";
     }
-
-
     @RequestMapping(value = "/createListing/{parentId}", method = RequestMethod.GET)
     public @ResponseBody List<Category> subCategories(@PathVariable("parentId") Integer parentId){
         return this.categoryService.findByParentId(parentId);
     }
-
-
     @PostMapping("/createListing")
     String addedListing(@Valid Listing listing, HttpSession session, Model model, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             System.out.println("error");
             return "createListing";
         }
-
         listingService.save(listing);
         return "redirect:/allListings";
     }
-
-
-
 
 
 }

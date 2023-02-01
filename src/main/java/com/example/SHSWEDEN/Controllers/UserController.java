@@ -104,12 +104,28 @@ public class UserController {
         User user = userService.findById(userId);
         model.addAttribute("user", user);
         session.getAttribute("listing");
+        Listing listing = (Listing) session.getAttribute("listing");
+        model.addAttribute(listing);
         return "CheckoutPage";
         }
         else
             session.removeAttribute("userId");
         return "redirect:/";
     }
+
+    @PostMapping ("/CheckoutPage")
+    String checkoutPost(HttpSession session, Model model){
+        Listing listing = (Listing) session.getAttribute("listing");
+        if (listing != null){
+            System.out.println("success");
+            listingRepository.delete(listing);
+            return "redirect:/";
+        }else
+            System.out.println("fail");
+            return "CheckoutPage";
+    }
+
+
 
     @GetMapping("/logout")
     String logout(HttpSession session) {
