@@ -2,9 +2,11 @@ package com.example.SHSWEDEN.Controllers;
 
 import com.example.SHSWEDEN.Entities.Category;
 import com.example.SHSWEDEN.Entities.Listing;
+import com.example.SHSWEDEN.Entities.Purchase;
 import com.example.SHSWEDEN.Entities.User;
 import com.example.SHSWEDEN.Repos.CategoryRepository;
 import com.example.SHSWEDEN.Repos.ListingRepository;
+import com.example.SHSWEDEN.Repos.PurchaseRepository;
 import com.example.SHSWEDEN.Repos.UserRepository;
 import com.example.SHSWEDEN.Services.ListingService;
 import com.example.SHSWEDEN.Services.UserService;
@@ -41,6 +43,8 @@ public class UserController {
     private UserRepository userRepository;
     @Autowired
     CategoryRepository categoryRepository;
+    @Autowired
+    PurchaseRepository purchaseRepository;
 
     @GetMapping("/")
     String landingPage(Model model) throws Exception {
@@ -125,7 +129,10 @@ public class UserController {
     String checkoutPost(HttpSession session, Model model){
         Listing listing = (Listing) session.getAttribute("listing");
         if (listing != null){
+            User user = (User) session.getAttribute("user");
             System.out.println("success");
+            Purchase purchase = new Purchase(listing.getTitle(), listing.getSeller(), user.getId(), listing.getPrice(), listing.getDonationPercent());
+            purchaseRepository.save(purchase);
             listingRepository.delete(listing);
             return "redirect:/";
         }else
