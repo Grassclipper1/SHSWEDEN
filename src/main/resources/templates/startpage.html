@@ -72,7 +72,7 @@
             <h1 class="jumbotron-heading text-light text-style-bold">Välkommen till Second hand Sweden</h1>
             <!--<p class="lead text-light"><b>Vem styr världen?
             - Ingen. Men vi kan göra världen en bättre plats med välgörenhet. Vi på Second Hand Sweden brinner för välgörenhet och återvinning, därför går 2% av alla köp till en valfri organisation</b></p> -->
-            <form class="d-flex searchitem"> <input class="form-control me-2" type="search" placeholder="Vad letar du efter?" aria-label="Search"> <i class="fa fa-search"></i> </form>
+            <form class="d-flex searchitem" th:action="@{/search}" method="get" > <input class="form-control me-2" type="search" placeholder="Vad letar du efter?" aria-label="Search" name="keyword" id="keyword" th:value="${keyword}" > <input type="submit" value="Sök"><i class="fa fa-search"></i> </form>
           </div>
         </div>
       </div>

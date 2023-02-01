@@ -79,7 +79,7 @@
              listing
              (title, description, price, "date", seller_id, category_id, donation_percent, donation_id)
          VALUES
-             ('Soffa', 'Fin tvåsitsig soffa, ikea', 200, CURRENT_TIMESTAMP, 2, 1, 10, 8);
+             ('Soffa', 'Fin tvåsitsig soffa, av ikea', 200, CURRENT_TIMESTAMP, 2, 1, 10, 8);
 
     INSERT
     INTO

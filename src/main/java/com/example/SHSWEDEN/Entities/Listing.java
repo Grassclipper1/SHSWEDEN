@@ -44,7 +44,7 @@ public class Listing {
 //    @ManyToOne(fetch = FetchType.LAZY, optional = false)
 //    @JoinColumn(name = "CategoryId", nullable = false)
     @Column(name = "CategoryId", nullable = true)
-    private String category;
+    private Integer category;
 
     @Column(name = "ShippingCost", precision = 18)
     private BigDecimal shippingCost;
@@ -115,11 +115,11 @@ public class Listing {
         this.seller = seller;
     }
 
-    public String getCategory() {
+    public Integer getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Integer category) {
         this.category = category;
     }
 

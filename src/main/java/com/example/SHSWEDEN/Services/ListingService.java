@@ -38,5 +38,9 @@ public class ListingService {
         return listingRepository.findAll();
     }
 
+    public List<Listing> getByKeyword(String keyword){
+        return listingRepository.findByKeyword(keyword);
+    }
+
 
 }

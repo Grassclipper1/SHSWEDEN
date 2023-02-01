@@ -11,6 +11,7 @@ import com.example.SHSWEDEN.Services.CategoryService;
 import com.example.SHSWEDEN.Services.ListingService;
 import com.example.SHSWEDEN.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +33,8 @@ public class ListingController {
     private CategoryService categoryService;
     @Autowired
     ListingRepository listingRepository;
+
+
 
     @GetMapping("/allListings")
     public String listings(Model model, @RequestParam(value = "sortBy", required = false, defaultValue = "0")
@@ -68,6 +71,13 @@ public class ListingController {
         return "oneListing";
     }
 
+    @GetMapping("/categories")
+    public String categories(Model model) {
+        List<Category> categories = categoryService.findByParentId(0);
+        model.addAttribute("categories", categories);
+        return "categories";
+    }
+
 
     @GetMapping("/createListing")
     String createListing(HttpSession session, Model model) {
@@ -93,6 +103,11 @@ public class ListingController {
         return this.categoryService.findByParentId(parentId);
     }
 
+    @RequestMapping(value = "/categories/{parentId}", method = RequestMethod.GET)
+    public @ResponseBody List<Category> Categories(@PathVariable("parentId") Integer parentId){
+        return this.categoryService.findByParentId(parentId);
+    }
+
 
     @PostMapping("/createListing")
     String addedListing(@Valid Listing listing, HttpSession session, Model model, BindingResult bindingResult){
@@ -103,6 +118,16 @@ public class ListingController {
 
         listingService.save(listing);
         return "redirect:/allListings";
+    }
+    @GetMapping("/search")
+    public String searchResult(Listing listing, Model model, @RequestParam("keyword") String keyword) {
+        List<Listing> searchResult = listingService.getByKeyword(keyword);
+        for (Listing l : searchResult) {
+            System.out.println(l.getDescription());
+        }
+        model.addAttribute("searchResult", searchResult);
+        model.addAttribute("keyword", keyword);
+        return "search";
     }
 
 
