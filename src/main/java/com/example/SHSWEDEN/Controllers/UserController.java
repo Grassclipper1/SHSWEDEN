@@ -148,6 +148,7 @@ public class UserController {
         session.removeAttribute("userId");
         session.removeAttribute("user");
         session.removeAttribute("seller");
+        session.removeAttribute("listing");
         return "redirect:/";
     }
    @GetMapping("/ProfilePage")  //använder denna för att ha åtkomst till account för tester

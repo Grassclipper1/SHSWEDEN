@@ -88,3 +88,16 @@
     VALUES
       ('Very good seller', 1, 10);
 
+  INSERT
+         INTO
+             purchase
+             (item_name, seller_id, buyer_id, price, donation_sum)
+         VALUES
+             ('Testsak', 1, 2, 15000, 74);
+
+   INSERT
+          INTO
+              purchase
+              (item_name, seller_id, buyer_id, price, donation_sum)
+          VALUES
+              ('testsak2', 1, 2, 374956, 83);
