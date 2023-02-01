@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:width="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,7 +29,7 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light p-2">
 
-        <div class="container-fluid"> <img src="../images/secondcircle_logo.png" class="img-fluid rounded" alt="..." style="width: 135px; height: 50x;"> <a class="navbar-brand name" href="#"></a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+        <div class="container-fluid"> <img th:src="@{/images/logotype.png}" class="img-fluid rounded" alt="..." style="width: 135px; height: 50x;"> <a class="navbar-brand name" href="#"></a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"> <a class="nav-link active" aria-current="page" href="#">Om oss</a> </li>
@@ -49,6 +49,23 @@
         <div class="title-container">
             <h1>Produkter</h1>
         </div>
+
+        <div class="article-container">
+            <div class="article scrollmenu scrollbar">
+                <div class="currentArticle" th:each="listing : ${listings}">
+                <div class="image-container"><img src="../images/product_shoes_1.jpg" width="200px"></div>
+                <h6><a th:href="'/oneListing/' + ${currentPage} + '/' + ${listing.id}" th:text="${listing.title}"></a></h6>
+                <p th:text="${listing.description}"></p>
+                </div>
+            </div>
+
+
+    </div>
+
+<!--    <div class="container-listing">
+        <div class="title-container">
+            <h1>Produkter</h1>
+        </div>
         <div class="container-article">
             <table>
                 <tr th:each="listing : ${listings}" class="article" style="">
@@ -61,10 +78,10 @@
             </table>
         </div>
 
-    </div>
+    </div>-->
 
     <!-- ONE LISTING OBJECT END -->
-</div>
+
 <!-- NAVBAR END -->
 
 

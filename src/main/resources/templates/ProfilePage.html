@@ -25,9 +25,9 @@
             <div class="col">
                 <nav aria-label="breadcrumb" class="rounded-3 mb-4">
                     <ol class="breadcrumb mb-0" style="background-color: #003B29;">
-                        <li class="breadcrumb-item yello"><a href="/createListing">Skapa annons</a></li>
+                        <li class="breadcrumb-item"><a href="/createListing">Skapa annons</a></li>
                         <li class="breadcrumb-item"><a href="/logout">Logga ut</a></li>
-                        <td><a th:href="'/allListings?seller=' + ${session.seller}"><button type="button" class="btn btn-dark">My listings</button></a></td>
+                        <a th:href="'/allListings?seller=' + ${session.seller}"><li class="breadcrumb-item" style="margin-left: 12px;"><a href="/logout">Mina annonser</a></li></a>
                     </ol>
                 </nav>
             </div>
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card mb-4 mb-lg-0">
+<!--                <div class="card mb-4 mb-lg-0">
                     <div class="card-body p-0">
                         <ul class="list-group list-group-flush rounded-3">
                             <li class="list-group-item d-flex justify-content-between align-items-center p-3"><i
@@ -67,7 +67,7 @@
                                 <p class="mb-0">JohanSmith@facebook</p></li>
                         </ul>
                     </div>
-                </div>
+                </div>-->
             </div>
             <div class="col-lg-8">
                 <div class="card mb-4">
@@ -100,10 +100,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="card mb-4 mb-md-0">
-                            <div class="card-body"><p class="mb-4"><span
-                                    class="text-dark font-italic me-1">Söker efter</span></p>
+                    <div class="col-md-6" style="border: solid 0px;">
+                        <div class="card mb-4 mb-md-0" style="border: none;">
+                            <div class="card-body"><h6 class="mb-4"><span
+                                    class="text-dark font-italic me-1">Söker efter</span></h6>
                                 <p class="mb-1" style="font-size: .77rem;">Skor</p>
                                 <div class="progress rounded" style="height: 5px;">
                                     <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
@@ -133,9 +133,9 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="card mb-4 mb-md-0">
-                            <div class="card-body"><p class="mb-4"><span class="text-dark font-italic me-1">Välgörenhetsorginisationer </span>
-                            </p>
+                        <div class="card mb-4 mb-md-0" style="border: none;">
+                            <div class="card-body"><h6 class="mb-4"><span class="text-dark font-italic me-1" >Välgörenhetsorginisationer </span>
+                            </h6>
                                 <p class="mb-1" style="font-size: .77rem;">Rädda barnen</p>
                                 <div class="progress rounded" style="height: 5px;">
                                     <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
