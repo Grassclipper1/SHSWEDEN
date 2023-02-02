@@ -43,6 +43,8 @@ public class ListingController {
     public String listings(Model model, @RequestParam(value = "seller", required = false, defaultValue = "0")
     int seller, @RequestParam(value = "category", required = false, defaultValue = "0")
     int category){
+        List<Category> categories = categoryService.findByParentId(0);
+        model.addAttribute("categories", categories);
         List<Listing> listings = listingService.createListingList(seller, category);
         model.addAttribute("listings", listings);
         return "allListings";
@@ -65,13 +67,6 @@ public class ListingController {
         return "CheckoutPage";
     }
 
-
-    @GetMapping("/categories")
-    public String categories(Model model) {
-        List<Category> categories = categoryService.findByParentId(0);
-        model.addAttribute("categories", categories);
-        return "categories";
-    }
 
     @GetMapping("/createListing")
     String createListing(HttpSession session, Model model) {

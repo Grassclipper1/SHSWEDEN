@@ -48,71 +48,78 @@
         </div>
     </nav>
 
+    <div class="title-container">
+        <h1>Produkter</h1>
+    </div>
+
     <!-- ONE LISTING OBJECT START -->
 
-    <div class="container-listing">
-        <div class="title-container">
-            <h1>Produkter</h1>
+    <div class="listings-container">
+        <div class="left-container">
+            <ul class="accordion">
+                <li th:object="${categories}" th:each="c : ${categories}" th:value="${c.id}" th:id="'category' + ${cStat.index}"
+                    th:onclick="'subCategory(' + ${cStat.index} + ')'">
+                    <a class="toggle" href="javascript:void(0);" th:text="${c.name}"
+                    ></a>
+                    <ul th:object="${categories}" class="inner" th:id="'subCategory' + ${cStat.index}">
+                        <li></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-
-        <div class="article-container">
-            <div class="article">
-                <div class="currentArticle" th:each="listing : ${listings}">
-                <div class="image-container"><img src="../images/defaultimage.svg" width="96px"></div>
-                    <div class="content-container-left">
-                        <h6><a th:href="'/oneListing/' + ${listing.id}" th:text="${listing.title}"></a></h6>
-                        <p th:text="${listing.description}"></p>
-                    </div>
-                    <div class="content-container-right">
-                        <h5 th:text="${listing.price} + ' kr'"></h5>
+        <div class="right-container">
+            <div class="article-container">
+                <div class="article">
+                    <div class="currentArticle" th:each="listing : ${listings}">
+                        <div class="image-container"><img src="../images/defaultimage.svg" width="96px"></div>
+                        <div class="content-container-left">
+                            <h6><a th:href="'/oneListing/' + ${listing.id}" th:text="${listing.title}"></a></h6>
+                            <p th:text="${listing.description}"></p>
+                        </div>
+                        <div class="content-container-right">
+                            <h5 th:text="${listing.price} + ' kr'"></h5>
+                        </div>
                     </div>
                 </div>
             </div>
-    </div>
-
-<!--    <div class="container-listing">
-        <div class="title-container">
-            <h1>Produkter</h1>
-        </div>
-        <div class="container-article">
-            <table>
-                <tr th:each="listing : ${listings}" class="article" style="">
-                    <div class="image-container">
-                        <td><img src="../images/product_shoes_1.jpg"></td>
-                    </div>
-                        <th><a th:href="'/oneListing' + '/' + ${listing.id}" th:text="${listing.title}"></a></th>
-                        <th th:text="${listing.description}"></th>
-                </tr>
-            </table>
         </div>
 
-    </div>-->
-
-    <!-- ONE LISTING OBJECT END -->
-
-<!-- NAVBAR END -->
-
-
-<!--<a href="/createListing">New listing</a>-->
 
 
 
 
-<!--<div>-->
 
-<!--        <span th:if="${showPrev}">-->
-<!--            <a th:href="'/?page=' + ${currentPage-1}" th:text="Previous"></a>-->
-<!--        </span>-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script th:inline="javascript">
+function subCategory(level){
+   var categoryId = $('#category'+level).val();
+    $.get("/categories/" + categoryId, function(data){
+        var list = "";
+        $.each(data, function (key, value) {
+            list += "<li value = " + value.id + ">" + value.name +  "</li>";
+        });
+            $('#subCategory'+level).append(list);
+    });
+}
+</script>
+        <script th:inline="javascript">
 
-<!--  <span th:each="page : ${pages}">-->
-<!--            <span th:if="${currentPage == page}" th:text="${page}"></span>-->
-<!--            <a th:if="${currentPage != page}" th:href="'/?page=' + ${page}" th:text="${page}"></a>-->
-<!--        </span>-->
+    $('.toggle').click(function(e) {
+  	e.preventDefault();
 
-<!--  <span th:if="${showNext}">-->
-<!--            <a th:href="'/?page=' + ${currentPage+1}" th:text="Next"></a>-->
-<!--        </span>-->
-<!--</div>-->
+    var $this = $(this);
+
+    if ($this.next().hasClass('show')) {
+        $this.next().removeClass('show');
+        $this.next().slideUp(10);
+    } else {
+        $this.parent().parent().find('li .inner').removeClass('show');
+        $this.parent().parent().find('li .inner').slideUp(350);
+        $this.next().toggleClass('show');
+        $this.next().slideToggle(10);
+    }
+});
+    </script>
 
  </body>
 </html>
