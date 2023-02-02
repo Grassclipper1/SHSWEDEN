@@ -111,12 +111,12 @@ public class UserController {
 
     @GetMapping("/CheckoutPage")
     String checkout(HttpSession session, Model model) {
-        Integer userId = (Integer) session.getAttribute("listing");
-        if (userId != null){
+        Integer userId = (Integer) session.getAttribute("userId");
+        Listing listing = (Listing) session.getAttribute("listing");
+        if (listing != null){
         User user = userService.findById(userId);
         model.addAttribute("user", user);
         session.getAttribute("listing");
-        Listing listing = (Listing) session.getAttribute("listing");
         model.addAttribute(listing);
         return "CheckoutPage";
         }
