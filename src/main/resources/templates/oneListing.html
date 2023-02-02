@@ -104,7 +104,7 @@
                     <span th:if="${session.user?.getId() != listing?.getSeller()}">
                     <form th:action="@{/oneListing}" method="post">
                         <input name="id" type="hidden" id="buyListing" th:value="${listing?.getId()}"/>
-                        <input class="btn btn-warning btn-lg btn-block button-stylek" type="submit" value="Lägg till varukorg"/>
+                        <input class="btn btn-warning btn-lg btn-block button-stylek" type="submit" value="Lägg till vara"/>
                     </form>
                     </span>
                 </span>
