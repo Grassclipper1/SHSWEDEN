@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -7,9 +7,10 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
+
+    <div class="contact-image"><img th:src="@{/images/logotype.png}" alt="rocket_contact"/></div>
     <div class="container contact-form">
-        <div class="contact-image"><img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
-        </div>
+
         <form method="post"><h3>Skicka oss ett meddelande!</h3>
             <div class="row">
                 <div class="col-md-6">
