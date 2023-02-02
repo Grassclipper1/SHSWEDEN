@@ -52,16 +52,45 @@ margin-bottom: 24px;
 
 .article {
 margin: 12px;
-display: flex;
 margin: 4px;
-max-width: 1250px;
+width: 100%;
+
+
 }
 
 .currentArticle {
-
 margin: 8px;
 padding: 8px;
+border-bottom: solid 1px #dddddd;
+
+display: flex;
+width: 925px;
 }
+
+.image-container {
+flex: 0 0 25%;
+}
+
+.content-container-left {
+flex: 0 0 50%;
+padding: 8px;
+display: flex;
+flex-direction: column;
+}
+
+.content-container-right {
+flex: 0 0 25%;
+padding: 8px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+h5 {
+background-color: #EFF881;
+}
+
 
 .currentArticle:hover {
 box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -80,13 +109,7 @@ p {
     white-space: normal;
 }}
 
-div.scrollmenu a {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px;
-  text-decoration: none;
-}
+
 
 
 
@@ -100,9 +123,6 @@ a:hover, a:visited, a:link, a:active
     text-decoration: none;
 }
 
-div.scrollmenu a:hover {
-  color: FFC107;
-}
 
 /* Scroll bar style */
 
