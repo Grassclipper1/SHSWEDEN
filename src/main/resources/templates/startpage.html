@@ -34,13 +34,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item"> <a class="nav-link active" aria-current="page" href="/about">Om oss</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="/categories">Produkter</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="/allListings">Produkter</a> </li>
           <li class="nav-item"> <a class="nav-link" href="/blog">Blogg</a> </li>
           <li class="nav-item"> <a class="nav-link" href="/contact">Kontakt</a> </li>
         </ul>
         <span th:if="${session.user?.getId() == null}" class="nav-item">
         <a href="/signin"><button type="button" class="btn btn-warning btn-sm">Logga in</button></a>
-        <a href="/signup"><button type="button " class="btn btn-link btn-sm">Skapa användare</button></a>
+        <a href="/signup"><button type="button " class="btn btn-link btn-sm">Registrera användare</button></a>
       </span>
         <span th:if="${session.user?.getId() != null}" class="nav-item">
           <a href="/ProfilePage"><button type="button" class="btn btn-warning btn-sm"><p th:text="${session.user?.getUserName()}"></button></a>

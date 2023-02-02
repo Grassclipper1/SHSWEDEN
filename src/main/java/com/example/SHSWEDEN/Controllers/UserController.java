@@ -131,7 +131,6 @@ public class UserController {
             Purchase purchase = new Purchase(listing.getTitle(), listing.getSeller(), user.getId(), listing.getPrice(), listing.getDonationPercent());
             purchaseRepository.save(purchase);
             Donation donation = new Donation(listing.getDonation(), (listing.getPrice() / listing.getDonationPercent()), purchase.getId());
-            purchaseRepository.save(purchase);
             listingRepository.delete(listing);
             donationRepository.save(donation);
             session.removeAttribute("listing");
