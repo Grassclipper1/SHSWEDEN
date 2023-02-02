@@ -101,7 +101,7 @@ INSERT
                         listing
                         (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_org)
                     VALUES
-                        ('iPhone 13', 'Oanvänd, fick i julklapp med fördrar android.', 4999, '2023-01-31', 2, 5061, 69.00, 10, 'UNHCR');
+                        ('iPhone 13', 'Oanvänd, fick i julklapp med föredrar android.', 4999, '2023-01-31', 2, 5061, 69.00, 10, 'UNHCR');
 
     INSERT
     INTO
