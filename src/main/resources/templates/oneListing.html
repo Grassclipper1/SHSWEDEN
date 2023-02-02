@@ -39,9 +39,14 @@
                     <li class="nav-item"> <a class="nav-link" href="#">Blogg</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="#">Kontakt</a> </li>
                 </ul>
-                <a href="/signin"><button type="button" class="btn btn-warning btn-sm">Logga in</button></a>
-                <a href="/signup"><button type="button " class="btn btn-link btn-sm">Skapa användare</button></a>
-            </div>
+                <span th:if="${session.user?.getId() == null}" class="nav-item">
+        <a href="/signin"><button type="button" class="btn btn-warning btn-sm">Logga in</button></a>
+        <a href="/signup"><button type="button " class="btn btn-link btn-sm">Skapa användare</button></a>
+      </span>
+                <span th:if="${session.user?.getId() != null}" class="nav-item">
+          <a href="/ProfilePage"><button type="button" class="btn btn-warning btn-sm"><p th:text="${session.user?.getUserName()}"></p></button></a>
+        </span>
+              </div>
         </div>
     </nav>
 
