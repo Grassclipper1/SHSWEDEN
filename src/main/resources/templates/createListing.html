@@ -95,6 +95,7 @@
                                 <div class="valid-feedback">Korrekt</div>
                             </div>
 
+
                             <div class="form-floating" style="padding: 8px">
                                 <input type="text" id="donationPercent" th:field="*{donationPercent}"
                                        class="form-control"
@@ -104,6 +105,15 @@
                                 <div class="invalid-feedback">Vänligen fyll i procent för donation</div>
                                 <div class="valid-feedback">Korrekt</div>
                             </div>
+
+                            <div class="form-floating" style="padding: 8px">
+                            <select th:object="${donation}" form="listingform" id="donation" class="form-select" >
+                                <label for="description" class="form-label">Välj </label>
+                                <option>Rädda Barnen</option>
+                                <option>Röda Korset</option>
+                                <option>20+</option>
+                            </select>
+                          </div>
 
                             <div class="form-floating" style="padding: 8px">
                                 <select th:object="${categories}" form="listingform" id="categories1"

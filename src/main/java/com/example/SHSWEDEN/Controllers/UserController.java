@@ -1,9 +1,6 @@
 package com.example.SHSWEDEN.Controllers;
 
-import com.example.SHSWEDEN.Entities.Category;
-import com.example.SHSWEDEN.Entities.Listing;
-import com.example.SHSWEDEN.Entities.Purchase;
-import com.example.SHSWEDEN.Entities.User;
+import com.example.SHSWEDEN.Entities.*;
 import com.example.SHSWEDEN.Repos.CategoryRepository;
 import com.example.SHSWEDEN.Repos.ListingRepository;
 import com.example.SHSWEDEN.Repos.PurchaseRepository;
@@ -132,6 +129,7 @@ public class UserController {
             User user = (User) session.getAttribute("user");
             System.out.println("success");
             Purchase purchase = new Purchase(listing.getTitle(), listing.getSeller(), user.getId(), listing.getPrice(), listing.getDonationPercent());
+//            Donation donation = new Donation(ge)
             purchaseRepository.save(purchase);
             listingRepository.delete(listing);
             session.removeAttribute("listing");

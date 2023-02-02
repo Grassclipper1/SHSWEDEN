@@ -40,7 +40,7 @@
         listing
         (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_id)
     VALUES
-        ('Gitarr', 'Akustisk gitarr, stålsträngad. Några repor. Fenderkopia. ', 800, '2023-01-15', 4, 3680, 100.0, 10, 3);
+        ('Gitarr', 'Akustisk gitarr, stålsträngad. Några repor. Fender-kopia. ', 800, '2023-01-15', 4, 3680, 100.0, 10, 3);
 
     INSERT
        INTO
@@ -74,6 +74,35 @@
              (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_id)
          VALUES
              ('Soffa', 'Fin tvåsitsig soffa, ikea', 200, '2023-01-30', 2, 128, 50.0, 10, 8);
+
+  INSERT
+       INTO
+                          listing
+                          (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_id)
+            VALUES
+                          ('Soffa', 'Fin tvåsitsig soffa, ikea', 200, '2023-01-30', 2, 128, 50.0, 10, 8);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     INSERT
     INTO
