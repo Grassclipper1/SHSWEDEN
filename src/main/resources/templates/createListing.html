@@ -95,6 +95,7 @@
                                 <div class="valid-feedback">Korrekt</div>
                             </div>
 
+
                             <div class="form-floating" style="padding: 8px">
                                 <input type="text" id="donationPercent" th:field="*{donationPercent}"
                                        class="form-control"
@@ -104,6 +105,23 @@
                                 <div class="invalid-feedback">Vänligen fyll i procent för donation</div>
                                 <div class="valid-feedback">Korrekt</div>
                             </div>
+
+                            <div class="form-floating" style="padding: 8px">
+                                <select th:field="*{donation}" form="listingform" id="donation" class="form-select" >
+                                    <option  th:value="null" selected disabled hidden >Välj välgörenhet</option>
+<!--                                    <option  th:value="null" selected hidden ></option>-->
+                                    <option th:value="'Rädda Barnen'">Rädda Barnen</option>
+                                    <option th:value="'Röda Korset'">Röda Korset</option>
+                                    <option th:value="'Hjärt-Lungfonden'">Hjärt-Lungfonden</option>
+                                    <option th:value="'Cancerfonden'">Cancerfonden</option>
+                                    <option th:value="'Unicef'">Unicef</option>
+                                    <option th:value="'Läkare Utan Gränser'">Läkare Utan Gränser</option>
+                                    <option th:value="'SOS Barnbyar'">SOS Barnbyar</option>
+                                    <option th:value="'WWF'">WWF</option>
+                                    <option th:value="'UNCHR'">UNCHR</option>
+                            </select>
+                                <label for="description" class="form-label">Välj välgörenhet</label>
+                          </div>
 
                             <div class="form-floating" style="padding: 8px">
                                 <select th:object="${categories}" form="listingform" id="categories1"
