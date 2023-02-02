@@ -27,16 +27,31 @@
         <h1>Resultat</h1>
     </div>
 
+<!--    <div class="article-container">-->
+<!--        <div class="article scrollmenu scrollbar">-->
+<!--            <div th:object="${searchResult}" th:each="s : ${searchResult}" class="currentArticle">-->
+<!--                <div class="image-container"><img src="../images/product_shoes_1.jpg" width="200px"></div>-->
+<!--                <h6><a th:href="'/oneListing/' + ${s.id}" th:text="${s.title}"></a></h6>-->
+<!--                <p th:text="${s.description}"></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        </table>-->
+<!--    </div>-->
     <div class="article-container">
-        <div class="article scrollmenu scrollbar">
+        <div class="article">
             <div th:object="${searchResult}" th:each="s : ${searchResult}" class="currentArticle">
-                <div class="image-container"><img src="../images/product_shoes_1.jpg" width="200px"></div>
-                <h6><a th:href="'/oneListing/' + ${s.id}" th:text="${s.title}"></a></h6>
-                <p th:text="${s.description}"></p>
+                <div class="image-container"><img src="../images/defaultimage.svg" width="96px"></div>
+                <div class="content-container-left">
+                    <h6><a th:href="'/oneListing/' + ${s.id}" th:text="${s.title}"></a></h6>
+                    <p th:text="${s.description}"></p>
+                </div>
+                <div class="content-container-right">
+                    <h5 th:text="${s.price} + ' kr'"></h5>
+                </div>
             </div>
         </div>
-        </table>
-    </div>
+
+
 
 </div>
 
