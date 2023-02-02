@@ -1,10 +1,7 @@
 package com.example.SHSWEDEN.Controllers;
 
 import com.example.SHSWEDEN.Entities.*;
-import com.example.SHSWEDEN.Repos.CategoryRepository;
-import com.example.SHSWEDEN.Repos.ListingRepository;
-import com.example.SHSWEDEN.Repos.PurchaseRepository;
-import com.example.SHSWEDEN.Repos.UserRepository;
+import com.example.SHSWEDEN.Repos.*;
 import com.example.SHSWEDEN.Services.ListingService;
 import com.example.SHSWEDEN.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +20,7 @@ import javax.validation.Valid;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -42,6 +40,8 @@ public class UserController {
     CategoryRepository categoryRepository;
     @Autowired
     PurchaseRepository purchaseRepository;
+    @Autowired
+    DonationRepository donationRepository;
 
     @GetMapping("/")
     String landingPage(Model model) throws Exception {
@@ -129,9 +129,11 @@ public class UserController {
             User user = (User) session.getAttribute("user");
             System.out.println("success");
             Purchase purchase = new Purchase(listing.getTitle(), listing.getSeller(), user.getId(), listing.getPrice(), listing.getDonationPercent());
-//            Donation donation = new Donation(ge)
+            purchaseRepository.save(purchase);
+            Donation donation = new Donation(listing.getDonation(), (listing.getPrice() / listing.getDonationPercent()), purchase.getId());
             purchaseRepository.save(purchase);
             listingRepository.delete(listing);
+            donationRepository.save(donation);
             session.removeAttribute("listing");
             return "redirect:/";
         }else

@@ -107,12 +107,20 @@
                             </div>
 
                             <div class="form-floating" style="padding: 8px">
-                            <select th:object="${donation}" form="listingform" id="donation" class="form-select" >
-                                <label for="description" class="form-label">Välj </label>
-                                <option>Rädda Barnen</option>
-                                <option>Röda Korset</option>
-                                <option>20+</option>
+                                <select th:field="*{donation}" form="listingform" id="donation" class="form-select" >
+                                    <option  th:value="null" selected disabled hidden >Välj välgörenhet</option>
+<!--                                    <option  th:value="null" selected hidden ></option>-->
+                                    <option th:value="'Rädda Barnen'">Rädda Barnen</option>
+                                    <option th:value="'Röda Korset'">Röda Korset</option>
+                                    <option th:value="'Hjärt-Lungfonden'">Hjärt-Lungfonden</option>
+                                    <option th:value="'Cancerfonden'">Cancerfonden</option>
+                                    <option th:value="'Unicef'">Unicef</option>
+                                    <option th:value="'Läkare Utan Gränser'">Läkare Utan Gränser</option>
+                                    <option th:value="'SOS Barnbyar'">SOS Barnbyar</option>
+                                    <option th:value="'WWF'">WWF</option>
+                                    <option th:value="'UNCHR'">UNCHR</option>
                             </select>
+                                <label for="description" class="form-label">Välj välgörenhet</label>
                           </div>
 
                             <div class="form-floating" style="padding: 8px">
