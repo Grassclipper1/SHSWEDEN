@@ -4,6 +4,7 @@ package com.example.SHSWEDEN.Entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 
 @Entity
 public class Donation {
@@ -12,15 +13,27 @@ public class Donation {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
-    @Size(max = 50)
-    @NotNull
-    @Column(name = "NameOrganisation", nullable = false, length = 50)
+    @Column(name = "NameOrganisation", nullable = true, length = 50)
     private String nameOrganisation;
 
-    @Size(max = 200)
-    @NotNull
-    @Column(name = "Description", nullable = false, length = 200)
-    private String description;
+    int donationSum;
+
+    int purchaseId;
+
+    public Donation(String donation, int i, int purchaseId) {
+        this.nameOrganisation = donation;
+        this.donationSum = i;
+        this.purchaseId = purchaseId;
+    }
+
+//    @Size(max = 200)
+//    @NotNull
+//    @Column(name = "Description", nullable = false, length = 200)
+//    private String description;
+
+
+
+
 
     public Integer getId() {
         return id;
@@ -38,12 +51,27 @@ public class Donation {
         this.nameOrganisation = nameOrganisation;
     }
 
-    public String getDescription() {
-        return description;
+    public int getDonationSum() {
+        return donationSum;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDonationSum(int donationSum) {
+        this.donationSum = donationSum;
     }
+
+    public int getPurchaseId() {
+        return purchaseId;
+    }
+
+    public void setPurchaseId(int purchaseId) {
+        this.purchaseId = purchaseId;
+    }
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
 
 }

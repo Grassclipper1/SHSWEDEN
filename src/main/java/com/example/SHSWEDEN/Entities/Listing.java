@@ -56,7 +56,7 @@ public class Listing {
     //    @NotNull
 //    @ManyToOne(fetch = FetchType.LAZY, optional = false)
 //    @JoinColumn(name = "DonationId", nullable = false)
-    @Column(name = "DonationId", nullable = true)
+    @Column(name = "DonationOrg", nullable = true)
     private String donation;
 
     public Integer getId() {
