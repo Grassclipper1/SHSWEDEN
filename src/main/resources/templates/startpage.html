@@ -34,12 +34,17 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item"> <a class="nav-link active" aria-current="page" href="#">Om oss</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="/categories">Kategorier</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="/categories">Produkter</a> </li>
           <li class="nav-item"> <a class="nav-link" href="/blog">Blogg</a> </li>
           <li class="nav-item"> <a class="nav-link" href="#">Kontakt</a> </li>
         </ul>
+        <span th:if="${session.user?.getId() == null}" class="nav-item">
         <a href="/signin"><button type="button" class="btn btn-warning btn-sm">Logga in</button></a>
         <a href="/signup"><button type="button " class="btn btn-link btn-sm">Skapa användare</button></a>
+      </span>
+        <span th:if="${session.user?.getId() != null}" class="nav-item">
+          <a href="/ProfilePage"><button type="button" class="btn btn-warning btn-sm"><p th:text="${session.user?.getUserName()}"></button></a>
+        </span>
       </div>
     </div>
   </nav>
@@ -89,7 +94,7 @@
     <div class="row mt-2 g-4" style="margin-bottom: 75px;">
       <div class="col-md-3">
         <div class="card p-1">
-          <a href="/allListings?category=1"><div class="d-flex justify-content-between align-items-center p-2">
+          <a href="/allListings?category=5061"><div class="d-flex justify-content-between align-items-center p-2">
             <div class="flex-column lh-1 imagename"> <span>Mobiltelefoner</span> </div>
             <div> <img src="https://i.imgur.com/b9zkoz0.jpg" height="110" width="100" /></div>
           </div></a>
@@ -97,7 +102,7 @@
       </div>
       <div class="col-md-3">
         <div class="card p-2">
-          <a href="/allListings?category=2"> <div class="d-flex justify-content-between align-items-center p-2">
+          <a href="/allListings?category=2853"> <div class="d-flex justify-content-between align-items-center p-2">
             <div class="flex-column lh-1 imagename"> <span>Hörlurar</span> </div>
             <div><img src="https://i.imgur.com/SHWASPG.png" height="100" width="100" /></div>
           </div></a>
@@ -105,7 +110,7 @@
       </div>
       <div class="col-md-3">
         <div class="card p-2">
-          <a href="/allListings?category=3"><div class="d-flex justify-content-between align-items-center p-2">
+          <a href="/allListings?category=5093"><div class="d-flex justify-content-between align-items-center p-2">
             <div class="flex-column lh-1 imagename"> <span>Smartklockor</span> </div>
             <div> <img src=" https://i.imgur.com/Ya0OXCv.png" height="100" width="100" /> </div>
           </div></a>
@@ -113,7 +118,7 @@
       </div>
       <div class="col-md-3">
         <div class="card p-2">
-          <a href="/allListings?category=4"> <div class="d-flex justify-content-between align-items-center p-2">
+          <a href="/allListings?category=2888"> <div class="d-flex justify-content-between align-items-center p-2">
             <div class="flex-column lh-1 imagename"> <span>Luftrengörare</span> </div>
             <div> <img src="https://i.imgur.com/2gvGwbh.png" height="100" width="100" /> </div>
           </div> </a>
@@ -121,7 +126,7 @@
       </div>
       <div class="col-md-3">
         <div class="card p-2tr5">
-          <a href="/allListings?category=5"><div class="d-flex justify-content-between align-items-center p-2">
+          <a href="/allListings?category=2657"><div class="d-flex justify-content-between align-items-center p-2">
             <div class="flex-column lh-1 imagename"> <span>Dammsugare</span> </div>
             <div> <img src="https://i.imgur.com/UMQJpSG.png" height="115" width="100" /> </div>
           </div> </a>
@@ -129,7 +134,7 @@
       </div>
       <div class="col-md-3">
         <div class="card p-2">
-          <a href="/allListings?category=6"><div class="d-flex justify-content-between align-items-center p-2">
+          <a href="/allListings?category=2775"><div class="d-flex justify-content-between align-items-center p-2">
             <div class="flex-column lh-1 imagename"> <span>Diskmaskin</span> </div>
             <div> <img src="https://i.imgur.com/e9CyhXR.png" height="100" width="100" /> </div>
           </div> </a>
@@ -137,7 +142,7 @@
       </div>
       <div class="col-md-3">
         <div class="card p-2">
-          <a href="/allListings?category=7"> <div class="d-flex justify-content-between align-items-center p-2">
+          <a href="/allListings?category=2917"> <div class="d-flex justify-content-between align-items-center p-2">
             <div class="flex-column lh-1 imagename"> <span>Smart -</span> <span>TV</span> </div>
             <div> <img src=" https://i.imgur.com/Zq8VigZ.png" height="100" width="100" /> </div>
           </div></a>
@@ -145,7 +150,7 @@
       </div>
       <div class="col-md-3">
         <div class="card p-2">
-          <a href="/allListings?category=8"><div class="d-flex justify-content-between align-items-center p-2">
+          <a href="/allListings?category=1433"><div class="d-flex justify-content-between align-items-center p-2">
             <div class="flex-column lh-1 imagename"> <span>Bärbara datorer</span> </div>
             <div> <img src="https://i.imgur.com/6pK5oZl.jpg" height="100" width="100" /> </div>
           </div></a>
