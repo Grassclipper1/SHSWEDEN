@@ -54,3 +54,28 @@ color: #2ca58d;
 font-weight: 700;
 }
 
+button, input, optgroup, select, textarea {
+           color: #000;
+           background-color: #ffc107;
+           border-color: #ffc107;
+           border-radius: 8px;
+           width: 96px;
+
+}
+
+button, input, optgroup, select, textarea:hover{
+
+}
+
+.form-control {
+width: 600px;
+}
+
+.d-flex {
+justify-content: center
+}
+
+
+
+
+
