@@ -45,12 +45,12 @@ public class ListingController {
     int category){
         List<Category> categories = categoryService.findByParentId(0);
         model.addAttribute("categories", categories);
-        List<Listing> listings = listingService.createListingList(seller, category);
-        model.addAttribute("listings", listings);
+        List<Listing> listings = listingService.createListingList(seller, category); //checks if we sorted by seller or one quick category from homepage
+        model.addAttribute("listings", listings); //displays all the listings, or the ones sorted
         return "allListings";
     }
 
-    @GetMapping("/oneListing/{id}")
+    @GetMapping("/oneListing/{id}") //displays the listing you chose
     public String listing(Model model,  @PathVariable Integer id, HttpSession session) {
         ListingObj listingObj = listingService.getListing(id);
         model.addAttribute("listing", listingObj.getListing());
@@ -58,7 +58,7 @@ public class ListingController {
         return "oneListing";
     }
 
-    @PostMapping("/oneListing")
+    @PostMapping("/oneListing") //takes the listing you wanted to buy, and saves it in sessions so it can be remembered in checkout
     public String listingPost(HttpSession session, @RequestParam Integer id) {
         Listing listing = listingRepository.getById(id);
         session.setAttribute("listing", listing);
@@ -68,7 +68,7 @@ public class ListingController {
     }
 
 
-    @GetMapping("/createListing")
+    @GetMapping("/createListing") //here you create a listing, it checks for if you are logged in and as who, and sets that as seller
     String createListing(HttpSession session, Model model) {
         Integer id = (Integer) session.getAttribute("userId");
         List<Category> categories = categoryService.findByParentId(0);
@@ -97,7 +97,6 @@ public class ListingController {
     @PostMapping("/createListing")
     String addedListing(@Valid Listing listing, HttpSession session, Model model, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
-            System.out.println("error");
             return "createListing";
         }
         listingService.save(listing);
@@ -112,27 +111,6 @@ public class ListingController {
         model.addAttribute("searchResult", searchResult);
         model.addAttribute("keyword", keyword);
         return "search";
-    }
-
-
-
-    private int[] toArray(int num) {
-        int[] result = new int[num];
-        for (int i = 0; i < num; i++) {
-            result[i] = i+1;
-        }
-        return result;
-    }
-    private List<Listing> getPage(int page, int pageSize) {
-        List<Listing> listings = (List<Listing>) listingService.findAll();
-        int from = Math.max(0,page*pageSize);
-        int to = Math.min(listings.size(),(page+1)*pageSize);
-
-        return listings.subList(from, to);
-    }
-    private int numberOfPages(int pageSize) {
-        List<Listing> listings = (List<Listing>) listingService.findAll();
-        return (int)Math.ceil((listings.size()) / pageSize);
     }
 
 }

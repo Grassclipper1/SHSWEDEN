@@ -67,7 +67,7 @@
           </ul>
           <form th:action="@{/CheckoutPage}" method="post">
             <input name="id" type="hidden" id="buyListing2" th:value="${listing?.getId()}"/>
-            <input class="btn btn-secondary btn-lg btn-block" type="submit" value="Fortsätt till betalningen"/>
+            <input class="btn btn-warning btn-lg btn-block" type="submit" value="Genomför Köp"/>
           </form>
 
 <!--          <form class="card p-2">-->
@@ -238,10 +238,10 @@
           </form>
 <!--        </div>-->
 <!--      </div>-->
-      <form th:action="@{/CheckoutPage}" method="post">
-        <input name="id" type="hidden" id="buyListing" th:value="${listing?.getId()}"/>
-        <input class="btn btn-secondary btn-lg btn-block" type="submit" value="Fortsätt till betalningen"/>
-      </form>
+<!--      <form th:action="@{/CheckoutPage}" method="post">-->
+<!--        <input name="id" type="hidden" id="buyListing" th:value="${listing?.getId()}"/>-->
+<!--        <input class="btn btn-secondary btn-lg btn-block" type="submit" value="Fortsätt till betalningen"/>-->
+<!--      </form>-->
       <footer class="my-5 pt-5 text-muted text-center text-small">
         <p class="mb-1">&copy; 2022-2023 Second Hand Sweden</p>
         <ul class="list-inline">
