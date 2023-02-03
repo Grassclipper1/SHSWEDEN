@@ -59,29 +59,20 @@ public class UserController {
         return "signin";
     }
 
-    @PostMapping("/signin")
+    @PostMapping("/signin") //checks so user exist with correct password, and creates sessions.
     String login(HttpSession session, Model model, @RequestParam String emailAddress, @RequestParam String password) {
         User user = userService.findByEmailAddressAndPassword(emailAddress, password);
-
         if(user != null && user.getPassword().equals(password)){
             session.setAttribute("userId", user.getId());
             session.setAttribute("seller", user.getId());
             session.setAttribute("user", user);
-
             List<Listing> listings = listingService.findByUser(user.getId());
             model.addAttribute("listings", listings);
-
             return "ProfilePage";
         }
         return "signin";
-        //return "redirect:/ProfilePage";
     }
 
-
-/*   @GetMapping("/ProfilePage")
-    String ProfilePage() {
-        return "ProfilePage";
-    }*/
 
     @GetMapping("/signup")
     String signup(Model model, HttpSession session) {
@@ -122,6 +113,7 @@ public class UserController {
         return "redirect:/";
     }
 
+    //removes the listing you bought from database, and creates a purchase object to track the buy, and a donation object
     @PostMapping ("/CheckoutPage")
     String checkoutPost(HttpSession session, Model model){
         Listing listing = (Listing) session.getAttribute("listing");
@@ -140,9 +132,7 @@ public class UserController {
             return "CheckoutPage";
     }
 
-
-
-    @GetMapping("/logout")
+    @GetMapping("/logout") //removes all the sessions so that you can log in as new user.
     String logout(HttpSession session) {
         session.removeAttribute("userId");
         session.removeAttribute("user");
@@ -189,43 +179,14 @@ public class UserController {
         }
     }
 
-        /* private void sumOfPriceSubDonation() {
-        List<Listing> listings = listingRepository.findAll();
-        int totalDonation = 0;
-        for(Listing listing : listings) {
-            totalDonation += listing.getPrice() - (listing.getPrice() - ((listing.getDonationPercent() * listing.getPrice()) / 100));
-        }
-        System.out.println(totalDonation);
-    }*/
-
     public int sumOfPriceSubDonation() {
         List<Purchase> purchases = purchaseRepository.findAll();
         int totalDonation = 0;
         for(Purchase purchase : purchases) {
             totalDonation += purchase.getPrice() - (purchase.getPrice() - ((purchase.getDonationSum() * purchase.getPrice()) / 100));
         }
-        /*System.out.println(totalDonation);*/
         return totalDonation;
     }
-
-    /* ----------------------- */
-
-/*    @GetMapping("/")
-    String startpage2(Model model) {
-        model.addAttribute("sum", sumOfPriceSubDonation());
-        model.getAttribute("sum");
-        return "startpage";
-    }*/
-
-
-/*    @GetMapping("/")
-    String landingPage() throws Exception {
-        *//*sumOfPriceSubDonation();*//*
-        if (!categoryRepository.existsById(1)) {
-            CategoryMaker();
-        }
-        return "startpage";
-    }*/
 
     @GetMapping("/blog")
     String Blog() {

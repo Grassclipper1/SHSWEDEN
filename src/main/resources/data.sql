@@ -26,6 +26,19 @@
     VALUES
         ('Kal', 'P.Dal','BuffaloBill', 'ängel', 'Kal@PDal.com', 'Ystadvägen', '21464');
 
+   INSERT
+    INTO
+        "user"
+         (first_Name, Last_Name, User_Name, PassWord, Email_Address, Street_Address, zip_id)
+    VALUES
+        ('Fia', 'Med','Knuff', 'spelpjäs', 'Fia@Knuff.com', 'Gustavsvägen', '21555');
+
+           INSERT
+            INTO
+                "user"
+                 (first_Name, Last_Name, User_Name, PassWord, Email_Address, Street_Address, zip_id)
+            VALUES
+                ('Vytis', 'Clausen','Viking', 'tony', 'Viking@Clausen.com', 'Göteborgsallé', '23234');
 
     INSERT
     INTO
@@ -101,6 +114,34 @@ INSERT
                         (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_org)
                     VALUES
                         ('iPhone 13', 'Oanvänd, fick i julklapp med föredrar android.', 4999, '2023-01-31', 2, 5061, 69.00, 10, 'UNHCR');
+
+ INSERT
+     INTO
+      listing
+      (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_org)
+      VALUES
+      ('Skinnhandskar', 'Äkta skinn, köpta på H&M.', 249, '2023-02-01', 5, 30, 49, 15, 'SOS Barnbyar');
+
+ INSERT
+     INTO
+      listing
+      (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_org)
+      VALUES
+      ('Barnstol', 'Grabben har växt ur sin stol, behöver inte ha den längre.', 79, '2023-02-01', 5, 384, 49, 15, 'SOS Barnbyar');
+
+       INSERT
+           INTO
+            listing
+            (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_org)
+            VALUES
+            ('Blandade frimärken', 'Min pappas samling, flera ovanliga.', 2049, '2023-02-01', 5, 2355, 100, 5, 'SOS Barnbyar');
+
+ INSERT
+    INTO
+             listing
+         (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_org)
+        VALUES
+         ('Pokémonkort', '350 kort, flera rares. Bl.a. en shiny Gyarados!', 1800, '2023-02-02', 6, 4221, 99, 8, 'Rädda Barnen');
 
     INSERT
     INTO
