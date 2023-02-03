@@ -57,4 +57,10 @@ public class ListingService {
 
         return listings;
     }
+
+    public List<Listing> createListCategories(int category) {
+        List<Listing> listings;
+        listings = listingRepository.getListingByCategory(String.valueOf(category));
+        return listings;
+    }
 }

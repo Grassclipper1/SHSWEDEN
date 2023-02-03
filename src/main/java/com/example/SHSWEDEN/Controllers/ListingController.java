@@ -22,6 +22,7 @@ import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,18 +39,25 @@ public class ListingController {
     ListingRepository listingRepository;
 
 
-
     @GetMapping("/allListings")
     public String listings(Model model, @RequestParam(value = "seller", required = false, defaultValue = "0")
     int seller, @RequestParam(value = "category", required = false, defaultValue = "0")
-    int category){
+                           int category) {
         List<Listing> listings = listingService.createListingList(seller, category);
         model.addAttribute("listings", listings);
         return "allListings";
     }
 
+//    @GetMapping("/bycategories") //KATEGORIER
+//    public String categories(Model model, @RequestParam(value = "category", required = false, defaultValue = "0")
+//    int category) {
+//        List<Listing> listings = listingService.createListCategories(category);
+//        model.addAttribute("listings", listings);
+//        return "allListings";
+//    }
+
     @GetMapping("/oneListing/{id}")
-    public String listing(Model model,  @PathVariable Integer id, HttpSession session) {
+    public String listing(Model model, @PathVariable Integer id, HttpSession session) {
         ListingObj listingObj = listingService.getListing(id);
         model.addAttribute("listing", listingObj.getListing());
         model.addAttribute("seller", listingObj.getSeller());
@@ -65,12 +73,79 @@ public class ListingController {
         return "CheckoutPage";
     }
 
-
     @GetMapping("/categories")
     public String categories(Model model) {
         List<Category> categories = categoryService.findByParentId(0);
         model.addAttribute("categories", categories);
         return "categories";
+    }
+
+    @GetMapping("/byCategories")
+    public String byCategories(Model model, @RequestParam(value = "parentId")
+    Integer parentId) {
+        List<Category> categories = categoryService.findByParentId(parentId);
+        List<Category> categories1 = new ArrayList<>(categories);
+        List<Listing> listing = new ArrayList<>();
+
+        for (Category c : categories) {
+            categories1.addAll(categoryService.findByParentId(c.getId()));
+        }
+        categories.addAll(categories1);
+        for (Category c : categories) {
+            categories1.addAll(categoryService.findByParentId(c.getId()));
+        }
+        categories.addAll(categories1);
+
+        List<Category> newList = new ArrayList<>();
+        for (Category c : categories) {
+            if (!newList.contains(c)) {
+                newList.add(c);
+            }
+        }
+
+        for (Category c : newList) {
+            listing.addAll(listingService.createListingList(0, c.getId()));
+        }
+
+        for (Listing l : listing) {
+            System.out.println(l.getTitle());
+        }
+
+        model.addAttribute("listings", listing);
+        return "allListings";
+    }
+
+    @RequestMapping(value = "byCategories/{parentId}", method = RequestMethod.GET)
+    public @ResponseBody List<Listing> byCategory(@PathVariable("parentId") Integer parentId) {
+        List<Category> categories = categoryService.findByParentId(parentId);
+        List<Category> categories1 = new ArrayList<>(categories);
+        List<Listing> listing = new ArrayList<>();
+
+        for (Category c : categories) {
+            categories1.addAll(categoryService.findByParentId(c.getId()));
+        }
+        categories.addAll(categories1);
+        for (Category c : categories) {
+            categories1.addAll(categoryService.findByParentId(c.getId()));
+        }
+        categories.addAll(categories1);
+
+        List<Category> newList = new ArrayList<>();
+        for (Category c : categories) {
+            if (!newList.contains(c)) {
+                newList.add(c);
+            }
+        }
+
+        for (Category c : newList) {
+            listing.addAll(listingService.createListingList(0, c.getId()));
+        }
+
+        for (Listing l : listing) {
+            System.out.println(l.getTitle());
+        }
+
+        return listing;
     }
 
     @GetMapping("/createListing")
@@ -88,19 +163,20 @@ public class ListingController {
             session.removeAttribute("userId");
         return "redirect:/allListings";
     }
+
     @RequestMapping(value = "/createListing/{parentId}", method = RequestMethod.GET)
-    public @ResponseBody List<Category> subCategories(@PathVariable("parentId") Integer parentId){
+    public @ResponseBody List<Category> subCategories(@PathVariable("parentId") Integer parentId) {
         return this.categoryService.findByParentId(parentId);
     }
 
     @RequestMapping(value = "/categories/{parentId}", method = RequestMethod.GET)
-    public @ResponseBody List<Category> Categories(@PathVariable("parentId") Integer parentId){
+    public @ResponseBody List<Category> Categories(@PathVariable("parentId") Integer parentId) {
         return this.categoryService.findByParentId(parentId);
     }
 
 
     @PostMapping("/createListing")
-    String addedListing(@Valid Listing listing, HttpSession session, Model model, BindingResult bindingResult){
+    String addedListing(@Valid Listing listing, HttpSession session, Model model, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             System.out.println("error");
             return "createListing";
@@ -108,6 +184,7 @@ public class ListingController {
         listingService.save(listing);
         return "redirect:/allListings";
     }
+
     @GetMapping("/search")
     public String searchResult(Listing listing, Model model, @RequestParam("keyword") String keyword) {
         List<Listing> searchResult = listingService.getByKeyword(keyword);
@@ -120,24 +197,25 @@ public class ListingController {
     }
 
 
-
     private int[] toArray(int num) {
         int[] result = new int[num];
         for (int i = 0; i < num; i++) {
-            result[i] = i+1;
+            result[i] = i + 1;
         }
         return result;
     }
+
     private List<Listing> getPage(int page, int pageSize) {
         List<Listing> listings = (List<Listing>) listingService.findAll();
-        int from = Math.max(0,page*pageSize);
-        int to = Math.min(listings.size(),(page+1)*pageSize);
+        int from = Math.max(0, page * pageSize);
+        int to = Math.min(listings.size(), (page + 1) * pageSize);
 
         return listings.subList(from, to);
     }
+
     private int numberOfPages(int pageSize) {
         List<Listing> listings = (List<Listing>) listingService.findAll();
-        return (int)Math.ceil((listings.size()) / pageSize);
+        return (int) Math.ceil((listings.size()) / pageSize);
     }
 
 }
