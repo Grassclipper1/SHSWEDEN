@@ -81,7 +81,6 @@ INSERT
                         (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_org)
                     VALUES
                         ('iPhone S9', 'Låst, men något för den händige!', 2000, '2023-01-30', 4, 5061, 69.00, 2, 'SOS Barnbyar');
-
   INSERT
          INTO
              listing
