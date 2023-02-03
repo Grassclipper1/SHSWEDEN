@@ -16,7 +16,7 @@ public class CategoryService {
 
     public List<Category> findByParentId(Integer parentId) {
 
-        List<Category> categories = categoryRepository.findByParentId(parentId) ;
+        List<Category> categories = categoryRepository.findByParentId(parentId);
         return categories;
     }
 }

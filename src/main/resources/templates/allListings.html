@@ -56,11 +56,11 @@
 
     <div class="listings-container">
         <div class="left-container">
-            <ul class="accordion">
-                <li th:object="${categories}" th:each="c : ${categories}" th:value="${c.id}" th:id="'category' + ${cStat.index}"
-                    th:onclick="'subCategory(' + ${cStat.index} + ')'">
-                    <a class="toggle" href="javascript:void(0);" th:text="${c.name}"
-                    ></a>
+            <ul class="accordion" >
+                <li th:object="${categories}" th:each="c : ${categories}" th:value="${c.id}" th:id="'category' + ${cStat.index}" th:onclick="'subCategory(' + ${cStat.index} + ')'">
+                    <a class="toggle" href="javascript:void(0);"
+                       th:text="${c.name}"></a>
+
                     <ul th:object="${categories}" class="inner" th:id="'subCategory' + ${cStat.index}">
                         <li></li>
                     </ul>
@@ -91,16 +91,18 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script th:inline="javascript">
-function subCategory(level){
-   var categoryId = $('#category'+level).val();
-    $.get("/categories/" + categoryId, function(data){
-        var list = "";
-        $.each(data, function (key, value) {
-            list += "<li value = " + value.id + ">" + value.name +  "</li>";
-        });
-            $('#subCategory'+level).append(list);
-    });
-}
+function subCategory(level) {
+            var categoryId = $('#category' + level).val();
+            $.get("/categories/" + categoryId, function (data) {
+                var list = "";
+                $.each(data, function (key, value) {
+                    list += "<li value = " + value.id + "> <a href='http://localhost:8080/byCategories?parentId=" + value.id + "'>" + value.name + "</a></li>";
+                });
+                $('#subCategory' + level).append(list);
+                $('#category' + level).prop('onclick', null);
+            });
+        }
+
 </script>
         <script th:inline="javascript">
 

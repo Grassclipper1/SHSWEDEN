@@ -58,6 +58,12 @@ public class ListingService {
         return listings;
     }
 
+    public List<Listing> createListCategories(int category) {
+        List<Listing> listings;
+        listings = listingRepository.getListingByCategory(String.valueOf(category));
+        return listings;
+    }
+
     public int purchaseDonation (int price, int donation){
       int donationSum =  price - (price - ((donation * price) / 100));
 

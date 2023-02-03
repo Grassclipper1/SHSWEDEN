@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,51 +26,57 @@
 </head>
 
 <body>
+    <h1>Våra kategorier</h1>
 
-<h1>Våra kategorier</h1>
+    <p class="description">
+        Klicka för att se mer
+    </p>
 
+    <ul class="accordion" >
+        <li th:object="${categories}" th:each="c : ${categories}" th:value="${c.id}" th:id="'category' + ${cStat.index}" th:onclick="'subCategory(' + ${cStat.index} + ')'">
+            <a class="toggle" href="javascript:void(0);"
+                th:text="${c.name}"></a>
 
-<ul class="accordion">
-    <li th:object="${categories}" th:each="c : ${categories}" th:value="${c.id}" th:id="'category' + ${cStat.index}"
-        th:onclick="'subCategory(' + ${cStat.index} + ')'">
-        <a class="toggle" href="javascript:void(0);" th:text="${c.name}"
-        ></a>
         <ul th:object="${categories}" class="inner" th:id="'subCategory' + ${cStat.index}">
             <li></li>
         </ul>
-    </li>
-</ul>
+        </li>
+    </ul>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script th:inline="javascript">
-function subCategory(level){
-   var categoryId = $('#category'+level).val();
-    $.get("/categories/" + categoryId, function(data){
-        var list = "";
-        $.each(data, function (key, value) {
-            list += "<li value = " + value.id + ">" + value.name +  "</li>";
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script th:inline="javascript">
+        function subCategory(level) {
+            var categoryId = $('#category' + level).val();
+            $.get("/categories/" + categoryId, function (data) {
+                var list = "";
+                $.each(data, function (key, value) {
+                    list += "<li value = " + value.id + "> <a href='http://localhost:8080/byCategories?parentId=" + value.id + "'>" + value.name + "</a></li>";
+                });
+                $('#subCategory' + level).append(list);
+                $('#category' + level).prop('onclick', null);
+            });
+        }
+
+    </script>
+    <script th:inline="javascript">
+
+        $('.toggle').click(function (e) {
+            e.preventDefault();
+
+            var $this = $(this);
+
+            if ($this.next().hasClass('show')) {
+                $this.next().removeClass('show');
+                $this.next().slideUp(10);
+            } else {
+                $this.parent().parent().find('li .inner').removeClass('show');
+                $this.parent().parent().find('li .inner').slideUp(350);
+                $this.next().toggleClass('show');
+                $this.next().slideToggle(10);
+            }
         });
-            $('#subCategory'+level).append(list);
-    });
-}
-</script>
-<script th:inline="javascript">
 
-    $('.toggle').click(function(e) {
-  	e.preventDefault();
-
-    var $this = $(this);
-
-    if ($this.next().hasClass('show')) {
-        $this.next().removeClass('show');
-        $this.next().slideUp(10);
-    } else {
-        $this.parent().parent().find('li .inner').removeClass('show');
-        $this.parent().parent().find('li .inner').slideUp(350);
-        $this.next().toggleClass('show');
-        $this.next().slideToggle(10);
-    }
-});
-</script>
+    </script>
 </body>
+
 </html>

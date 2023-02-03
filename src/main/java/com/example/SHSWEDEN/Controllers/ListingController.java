@@ -22,6 +22,7 @@ import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -67,6 +68,80 @@ public class ListingController {
         return "CheckoutPage";
     }
 
+    @GetMapping("/categories")
+    public String categories(Model model) {
+        List<Category> categories = categoryService.findByParentId(0);
+        model.addAttribute("categories", categories);
+        return "categories";
+    }
+
+    @GetMapping("/byCategories")
+    public String byCategories(Model model, @RequestParam(value = "parentId")
+    Integer parentId) {
+        List<Category> categories = categoryService.findByParentId(parentId);
+        List<Category> categories1 = new ArrayList<>(categories);
+        List<Listing> listing = new ArrayList<>();
+
+        for (Category c : categories) {
+            categories1.addAll(categoryService.findByParentId(c.getId()));
+        }
+        categories.addAll(categories1);
+        for (Category c : categories) {
+            categories1.addAll(categoryService.findByParentId(c.getId()));
+        }
+        categories.addAll(categories1);
+
+        List<Category> newList = new ArrayList<>();
+        for (Category c : categories) {
+            if (!newList.contains(c)) {
+                newList.add(c);
+            }
+        }
+
+        for (Category c : newList) {
+            listing.addAll(listingService.createListingList(0, c.getId()));
+        }
+
+        for (Listing l : listing) {
+            System.out.println(l.getTitle());
+        }
+
+        model.addAttribute("listings", listing);
+        return "allListings";
+    }
+
+    @RequestMapping(value = "byCategories/{parentId}", method = RequestMethod.GET)
+    public @ResponseBody List<Listing> byCategory(@PathVariable("parentId") Integer parentId) {
+        List<Category> categories = categoryService.findByParentId(parentId);
+        List<Category> categories1 = new ArrayList<>(categories);
+        List<Listing> listing = new ArrayList<>();
+
+        for (Category c : categories) {
+            categories1.addAll(categoryService.findByParentId(c.getId()));
+        }
+        categories.addAll(categories1);
+        for (Category c : categories) {
+            categories1.addAll(categoryService.findByParentId(c.getId()));
+        }
+        categories.addAll(categories1);
+
+        List<Category> newList = new ArrayList<>();
+        for (Category c : categories) {
+            if (!newList.contains(c)) {
+                newList.add(c);
+            }
+        }
+
+        for (Category c : newList) {
+            listing.addAll(listingService.createListingList(0, c.getId()));
+        }
+
+        for (Listing l : listing) {
+            System.out.println(l.getTitle());
+        }
+
+        return listing;
+    }
 
     @GetMapping("/createListing") //here you create a listing, it checks for if you are logged in and as who, and sets that as seller
     String createListing(HttpSession session, Model model) {
@@ -83,25 +158,28 @@ public class ListingController {
             session.removeAttribute("userId");
         return "redirect:/allListings";
     }
+
     @RequestMapping(value = "/createListing/{parentId}", method = RequestMethod.GET)
-    public @ResponseBody List<Category> subCategories(@PathVariable("parentId") Integer parentId){
+    public @ResponseBody List<Category> subCategories(@PathVariable("parentId") Integer parentId) {
         return this.categoryService.findByParentId(parentId);
     }
 
     @RequestMapping(value = "/categories/{parentId}", method = RequestMethod.GET)
-    public @ResponseBody List<Category> Categories(@PathVariable("parentId") Integer parentId){
+    public @ResponseBody List<Category> Categories(@PathVariable("parentId") Integer parentId) {
         return this.categoryService.findByParentId(parentId);
     }
 
 
     @PostMapping("/createListing")
-    String addedListing(@Valid Listing listing, HttpSession session, Model model, BindingResult bindingResult){
+    String addedListing(@Valid Listing listing, HttpSession session, Model model, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+            System.out.println("error");
             return "createListing";
         }
         listingService.save(listing);
         return "redirect:/allListings";
     }
+
     @GetMapping("/search")
     public String searchResult(Listing listing, Model model, @RequestParam("keyword") String keyword) {
         List<Listing> searchResult = listingService.getByKeyword(keyword);
