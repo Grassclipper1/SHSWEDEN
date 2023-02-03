@@ -3,7 +3,7 @@
         "user"
         (first_Name, Last_Name, User_Name, PassWord, Email_Address, Street_Address, zip_id)
     VALUES
-        ('Test', 'Testsson','Gurkan', 'banan', 'test@test.com', 'karlavägen', '3333');
+        ('Adam', 'Andersson','Gurkan', 'banan', 'test@test.com', 'karlavägen', '3333');
 
     INSERT
     INTO
@@ -30,56 +30,78 @@
     INSERT
     INTO
         listing
-        (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_id)
+        (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_org)
     VALUES
-        ('Skor', 'Hej jag vill sälja min sko', 100, '2023-01-22', 1, 1, 49.0, 10, 1);
+        ('Converse all-star', 'Säljer converse all-star high top. Stl 42.', 100, '2023-01-22', 1, 4265, 49.0, 10, 'Rädda Barnen');
 
-         INSERT
-            INTO
-                listing
-                (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_id)
-            VALUES
-                ('Kalsonger', 'Välanvända kalsonger, några hål', 450, '2023-01-25', 2, 1,25.0, 10, 2);
 
  INSERT
     INTO
         listing
-        (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_id)
+        (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_org)
     VALUES
-        ('Gitarr', 'Akustisk gitarr, stålsträngad. Några repor. Fenderkopia. ', 800, '2023-01-15', 4, 2, 100.0, 10, 3);
+        ('Akustisk gitarr, Fender', 'Stålsträngad gitarr av märket Fender. Några repor, se bild.', 800, '2023-01-15', 4, 3680, 100.0, 2, 'Unicef');
 
     INSERT
        INTO
            listing
-           (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_id)
+           (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_org)
        VALUES
-           ('Hörlurar', 'Boze hörlurar, säjer pga lyxfällan', 999, '2023-01-13', 4, 1, 150.0, 10, 4);
+           ('Boze-Hörlurar', 'Säljer pga lyxfällan', 999, '2023-01-13', 4, 2853, 150.0, 2, 'Röda Korset');
+INSERT
+       INTO
+           listing
+           (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_org)
+       VALUES
+           ('Nokia 3310', 'Riktig klenod från en svunnen tid. Samlarobjekt!', 499, '2023-01-15', 1, 5061, 59.00, 15, 'Röda Korset');
 
       INSERT
          INTO
              listing
-             (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_id)
+             (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_org)
          VALUES
-             ('Porslinkoppar', 'Fyra koppar av märket petunia', 75, '2023-01-28', 3, 1, 49.0, 10, 5);
+             ('Porslinskoppar', 'Fyra koppar av märket petunia.', 75, '2023-01-28', 3, 2491, 49.0, 10, 'WWF');
 
   INSERT
          INTO
              listing
-             (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_id)
+             (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_org)
          VALUES
-             ('Lego', 'Säljer lego då min son inte leker med det längre', 300, '2023-01-28', 3, 1, 29.0, 10, 6);
+             ('Blandat Lego', 'Säljer min sons lego då han inte leker med det längre. Blandat city, riddare, ninjago.', 300, '2023-01-28', 3, 573, 29.0, 10, 'WWF');
   INSERT
          INTO
              listing
-             (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_id)
+             (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_org)
          VALUES
-             ('Smart-tv', 'En samsung smart-tv, aldrig använd.', 5000, '2023-01-29', 4, 2, 400.0, 5, 7);
+             ('Samsung Smart-tv', 'En samsung smart-tv, aldrig använd.', 4999, '2023-01-29', 4, 2917, 400.0, 2, 'Cancerfonden');
+
+           INSERT
+                    INTO
+                        listing
+                        (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_org)
+                    VALUES
+                        ('iPhone S9', 'Låst, men något för den händige!', 2000, '2023-01-30', 4, 5061, 69.00, 2, 'SOS Barnbyar');
+
   INSERT
          INTO
              listing
-             (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_id)
+             (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_org)
          VALUES
-             ('Soffa', 'Fin tvåsitsig soffa, ikea', 200, '2023-01-30', 2, 1, 50.0, 10, 8);
+             ('Soffa', 'Fin tvåsitsig soffa, ikea', 200, '2023-01-30', 2, 128, 50.0, 10, 'Cancerfonden');
+
+ INSERT
+         INTO
+             listing
+             (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_org)
+         VALUES
+             ('Airpods', 'Lite dåligt ljud i högra, men funkar fint.', 349, '2022-12-30', 1, 2853, 49.0, 10, 'WWF');
+
+  INSERT
+                    INTO
+                        listing
+                        (title, description, price, "date", seller_id, category_id, shipping_cost, donation_percent, donation_org)
+                    VALUES
+                        ('iPhone 13', 'Oanvänd, fick i julklapp med föredrar android.', 4999, '2023-01-31', 2, 5061, 69.00, 10, 'UNHCR');
 
     INSERT
     INTO

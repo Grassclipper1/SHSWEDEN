@@ -39,9 +39,14 @@
                     <li class="nav-item"> <a class="nav-link" href="#">Blogg</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="#">Kontakt</a> </li>
                 </ul>
-                <a href="/signin"><button type="button" class="btn btn-warning btn-sm">Logga in</button></a>
-                <a href="/signup"><button type="button " class="btn btn-link btn-sm">Skapa användare</button></a>
-            </div>
+                <span th:if="${session.user?.getId() == null}" class="nav-item">
+        <a href="/signin"><button type="button" class="btn btn-warning btn-sm">Logga in</button></a>
+        <a href="/signup"><button type="button " class="btn btn-link btn-sm">Skapa användare</button></a>
+      </span>
+                <span th:if="${session.user?.getId() != null}" class="nav-item">
+          <a href="/ProfilePage"><button type="button" class="btn btn-warning btn-sm"><p th:text="${session.user?.getUserName()}"></p></button></a>
+        </span>
+              </div>
         </div>
     </nav>
 
@@ -57,7 +62,6 @@
 
         <div class="container-one-listing">
             <div class="left-container">
-
                 <div class="single-donation-container">
                     <h6 class="h6-title-style" style="color: #EFF881" th:text="${listing?.getDonationPercent()} + ' % går till välgörenhet'"></h6>
                 </div>
@@ -99,7 +103,7 @@
                     <span th:if="${session.user?.getId() != listing?.getSeller()}">
                     <form th:action="@{/oneListing}" method="post">
                         <input name="id" type="hidden" id="buyListing" th:value="${listing?.getId()}"/>
-                        <input class="btn btn-warning btn-lg btn-block button-stylek" type="submit" value="Lägg till varukorg"/>
+                        <input class="btn btn-warning btn-lg btn-block button-stylek" type="submit" value="Lägg till vara"/>
                     </form>
                     </span>
                 </span>

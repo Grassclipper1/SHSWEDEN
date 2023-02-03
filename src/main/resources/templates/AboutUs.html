@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {  font-family: Arial, Helvetica, sans-serif;  margin: 0;}html {  box-sizing: border-box;}*, *:before, *:after {  box-sizing: inherit;}.column {  float: left;  width: 33.3%;  margin-bottom: 16px;  padding: 0 8px;}.card {  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);  margin: 8px;}.about-section {  padding: 50px;  text-align: center;  background-color: #003B29;  color: white;}.container {  padding: 0 16px;}.container::after, .row::after {  content: "";  clear: both;  display: table;}.title {  color: grey;}.button {  border: none;  outline: 0;  display: inline-block;  padding: 8px;  color: white;  background-color: #000;  text-align: center;  cursor: pointer;  width: 100%;}.button:hover {  background-color: #555;}@media screen and (max-width: 650px) {  .column {    width: 100%;    display: block;  }}
+    </style>
+</head>
+<body>
+<div class="about-section"><h1>Om oss</h1>    <small><p>Välkommen till Second Circle, den ultimata destinationen för
+    hållbar shopping. Vi är en begagnad plattform som brinner för att minska avfallet och påverka miljön positivt. Vårt
+    mål är att göra det enkelt för människor att köpa och sälja skonsamt använda föremål, hålla dem borta från soptippar
+    och spara resurser. Vi tror att alla har makten att göra skillnad och det är därför vi har gjort det till vårt
+    uppdrag att tillhandahålla en bekväm, tillgänglig och prisvärd plattform för att köpa och sälja begagnade varor. Vår
+    plattform erbjuder ett stort urval av artiklar, från kläder och accessoarer till möbler och hemvaror, allt till
+    oslagbara priser. På Second Circle är vi stolta över vårt engagemang för miljön och vårt samhälle. Det är därför vi
+    har implementerat ett antal hållbara metoder, som att erbjuda ett återvinningsprogram och stödja lokala
+    välgörenhetsorganisationer. Vår plattform är också användarvänlig och lättnavigerad, vilket gör det enkelt för våra
+    användare att köpa och sälja varor med tillförsikt. Så varför vänta? Gå med i hållbarhetsrörelsen idag och börja
+    handla begagnat på Second Circle. Låt oss arbeta tillsammans för att göra världen till en bättre plats, ett föremål
+    i taget</p></small>
+    <p></p></div>
+<div class="container">
+    <form action="action_page.php">
+        <form action="//submit.form" id="ContactUs100" method="post" onsubmit="return ValidateForm(this);">
+            <script type="text/javascript">
+                function ValidateForm(frm) {if (frm.Name.value == "") { alert('Name is required.'); frm.Name.focus(); return false; }if (frm.FromEmailAddress.value == "") { alert('Email address is required.'); frm.FromEmailAddress.focus(); return false; }if (frm.FromEmailAddress.value.indexOf("@") < 1 || frm.FromEmailAddress.value.indexOf(".") < 1) { alert('Please enter a valid email address.'); frm.FromEmailAddress.focus(); return false; }if (frm.Comments.value == "") { alert('Please enter comments or questions.'); frm.Comments.focus(); return false; }return true; }
+            </script>
+            <font size="+2">Har du frågor eller funderingar, så kan du alltid kontakta oss via vårt formulär
+                nedanför</font>
+            <table style="width:100%;max-width:550px;border:0;" cellpadding="8" cellspacing="0">
+                <tr>
+                    <td><label for="Name">Namn:</label></td>
+                    <td><input name="Name" type="text" maxlength="60" style="width:100%;max-width:250px;"/></td>
+                </tr>
+                <tr>
+                    <td><label for="PhoneNumber">Mobil</label></td>
+                    <td><input name="PhoneNumber" type="text" maxlength="43" style="width:100%;max-width:250px;"/></td>
+                </tr>
+                <tr>
+                    <td><label for="FromEmailAddress">Epost:</label></td>
+                    <td><input name="FromEmailAddress" type="text" maxlength="90" style="width:100%;max-width:250px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="Comments">Meddelande:</label></td>
+                    <td><textarea name="Comments" rows="7" cols="40" style="width:100%;max-width:350px;"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="float:right"><a href="https://www.100forms.com" id="lnk100" title="form to email">form
+                            to email</a></div>
+                        <input name="skip_Submit" type="submit" value="Submit"/>
+                        <script src="https://www.100forms.com/js/FORMKEY:U5PU6SENSDKB/SEND:my@email.com"
+                                type="text/javascript"></script>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body>
+</html>

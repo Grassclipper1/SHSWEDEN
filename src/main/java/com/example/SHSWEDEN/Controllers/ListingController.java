@@ -42,7 +42,9 @@ public class ListingController {
     @GetMapping("/allListings")
     public String listings(Model model, @RequestParam(value = "seller", required = false, defaultValue = "0")
     int seller, @RequestParam(value = "category", required = false, defaultValue = "0")
-                           int category) {
+    int category){
+        List<Category> categories = categoryService.findByParentId(0);
+        model.addAttribute("categories", categories);
         List<Listing> listings = listingService.createListingList(seller, category);
         model.addAttribute("listings", listings);
         return "allListings";
@@ -204,7 +206,6 @@ public class ListingController {
         }
         return result;
     }
-
     private List<Listing> getPage(int page, int pageSize) {
         List<Listing> listings = (List<Listing>) listingService.findAll();
         int from = Math.max(0, page * pageSize);
