@@ -130,7 +130,7 @@ public class UserController {
             System.out.println("success");
             Purchase purchase = new Purchase(listing.getTitle(), listing.getSeller(), user.getId(), listing.getPrice(), listing.getDonationPercent());
             purchaseRepository.save(purchase);
-            Donation donation = new Donation(listing.getDonation(), (listing.getPrice() / listing.getDonationPercent()), purchase.getId());
+            Donation donation = new Donation(listing.getDonation(), listingService.purchaseDonation(listing.getPrice(), listing.getDonationPercent()), purchase.getId());
             listingRepository.delete(listing);
             donationRepository.save(donation);
             session.removeAttribute("listing");

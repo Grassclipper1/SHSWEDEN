@@ -57,4 +57,10 @@ public class ListingService {
 
         return listings;
     }
+
+    public int purchaseDonation (int price, int donation){
+      int donationSum =  price - (price - ((donation * price) / 100));
+
+      return donationSum;
+    }
 }
