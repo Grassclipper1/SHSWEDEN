@@ -105,6 +105,8 @@ public class ListingController {
         for (Listing l : listing) {
             System.out.println(l.getTitle());
         }
+        List<Category> categoriesMenu = categoryService.findByParentId(0);
+        model.addAttribute("categories", categoriesMenu);
 
         model.addAttribute("listings", listing);
         return "allListings";
@@ -186,9 +188,10 @@ public class ListingController {
         for (Listing l : searchResult) {
             System.out.println(l.getDescription());
         }
-        model.addAttribute("searchResult", searchResult);
-        model.addAttribute("keyword", keyword);
-        return "search";
+        List<Category> categoriesMenu = categoryService.findByParentId(0);
+        model.addAttribute("categories", categoriesMenu);
+        model.addAttribute("listings", searchResult);
+        return "allListings";
     }
 
 }
